@@ -1,5 +1,7 @@
 package org.codehaus.ivory.serialize;
 
+import org.codehaus.ivory.attributes.NonWebMethod;
+
 /**
  * 
  * @author <a href="mailto:dan@envoisolutions.com">Dan Diephouse</a>
@@ -23,7 +25,7 @@ public class MetaBean
     }
 
     /**
-     * @axis.hidemethod
+     * @@NonWebMethod()
      * @return String
      */
     public String getWorld()

@@ -1,14 +1,17 @@
 package org.codehaus.ivory;
 
 import java.lang.reflect.Method;
+import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 
 import org.apache.axis.description.OperationDesc;
 import org.apache.axis.description.ParameterDesc;
 import org.apache.axis.description.ServiceDesc;
-import org.apache.commons.attributes.Attribute;
+import org.apache.commons.attributes.AttributeUtil;
 import org.apache.commons.attributes.Attributes;
+import org.codehaus.ivory.attributes.NonWebMethod;
+import org.codehaus.ivory.attributes.ParameterType;
 
 /**
  * Adds meta-data capabilities to Axis's ServiceDesc class.
@@ -19,11 +22,6 @@ import org.apache.commons.attributes.Attributes;
 public class IvoryServiceDesc
     extends ServiceDesc
 {
-
-    protected static final String AXIS_HIDE_METHOD = "axis.hidemethod";
-    protected static final String AXIS_SERIALIZE = "axis.serialize.";
-    protected static final String OUT_SERIALIZE = "axis.serialize.out";
-
     private boolean loadingServiceDesc = false;
     
     /**
@@ -56,7 +54,7 @@ public class IvoryServiceDesc
     {
         Method method = operation.getMethod();
         
-        return Attributes.hasAttribute( method, AXIS_HIDE_METHOD );
+        return Attributes.hasAttribute( method, NonWebMethod.class );
     }
 
     protected void customizeOperation( OperationDesc operation )
@@ -77,30 +75,48 @@ public class IvoryServiceDesc
         Method method = operation.getMethod();
         
         String name = parameter.getName();
-        if ( name == null )
-        {
-            name = "out";
-        }
         
-        if ( Attributes.hasAttribute( method, AXIS_SERIALIZE + name ) )
+        if ( name == null &&
+             Attributes.hasReturnAttributeType( method, ParameterType.class ) )
         {
-            Attribute outAttribute = 
-                Attributes.getAttribute( method, AXIS_SERIALIZE + name );
+            Collection allAttrs = Attributes.getReturnAttributes(method);
+            Collection retAttrs =
+                AttributeUtil.getObjectsWithAttributeType(
+                    allAttrs,
+                    ParameterType.class);
             
-            String clazz = outAttribute.getValue();
-
-            log.debug( "Changing parameter type to " + clazz );
+            ParameterType type = (ParameterType) retAttrs.iterator().next();
             
-            try
-            {
-                parameter.setJavaType( Class.forName( clazz ) );
-            }
-            catch ( ClassNotFoundException e )
-            {
-                log.debug( "Could not find class " + clazz + "." +
-                           " Method will not be exposed." );
-            }
+            changeParameterType( parameter, type );
         }
+        else if (Attributes.hasReturnAttributeType( method, ParameterType.class ))
+        {
+            // parameters are named "in0", "in1" and so on.
+            // get everything after "in"
+            int num = new Integer(name.substring( 2 )).intValue();
+            Collection allAttrs = Attributes.getParameterAttributes(method, num);
+            Collection retAttrs =
+                AttributeUtil.getObjectsWithAttributeType(
+                    allAttrs,
+                    ParameterType.class);
+            
+            ParameterType type = (ParameterType) retAttrs.iterator().next();
+            
+            changeParameterType( parameter, type );
+        }
+    }
+
+    /**
+     * @param parameter
+     * @param type
+     */
+    private void changeParameterType(ParameterDesc parameter, ParameterType type)
+    {            
+        String clazz = type.getParameterType().getName();
+
+        log.debug( "Changing parameter type to " + clazz );
+            
+        parameter.setJavaType( type.getParameterType() );
     }
 
     protected boolean isValidOperation( OperationDesc operation )

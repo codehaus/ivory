@@ -2,6 +2,9 @@ package org.codehaus.ivory.list;
 
 import java.util.List;
 
+import org.codehaus.ivory.attributes.NonWebMethod;
+import org.codehaus.ivory.attributes.ParameterType;
+
 /**
  * Service to test the ability to return the java.util.List class correctly.
  * 
@@ -13,12 +16,12 @@ public interface ListService
 	final public static String ROLE = ListService.class.getName();
 	
 	/**
-     * @axis.serialize.out [Ljava.lang.String;
+     * @@.return ParameterType(String[].class)
      */
 	public List getDevelopers();
 
 	/**
-	 * @axis.hidemethod
+	 * @@NonWebMethod()
 	 */
 	public void secretMethod();	
 }

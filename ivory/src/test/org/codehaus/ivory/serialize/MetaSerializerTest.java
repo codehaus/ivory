@@ -5,8 +5,8 @@ import java.util.Map;
 
 import javax.xml.namespace.QName;
 
-import org.apache.commons.attributes.AttributeFinder;
 import org.apache.commons.attributes.Attributes;
+import org.codehaus.ivory.attributes.NonWebMethod;
 
 import junit.framework.TestCase;
 
@@ -33,9 +33,8 @@ public class MetaSerializerTest extends TestCase
         Map properties =
             MetadataDeserializerFactory.getProperties(MetaBean.class, null);
         
-        AttributeFinder finder = Attributes.getAttributeFinder();
         Method m = MetaBean.class.getMethod("getWorld", new Class[0] );
-        assertTrue( finder.getAttribute(m, "axis.hidemethod") != null );
+        assertTrue( Attributes.hasAttributeType(m, NonWebMethod.class) );
         
         assertTrue( properties.containsKey("hello") );
         assertTrue( !properties.containsKey("world") );
