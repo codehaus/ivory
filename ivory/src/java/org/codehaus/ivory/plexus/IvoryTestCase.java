@@ -119,7 +119,7 @@ public class IvoryTestCase extends PlexusTestCase
     
         InputStream is =
             getClass().getResourceAsStream(
-                "/org/codehaus/axis/plexus/web.xml");
+                "/org/codehaus/ivory/plexus/web.xml");
     
         sr = new ServletRunner(is);
     

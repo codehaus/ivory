@@ -11,6 +11,7 @@
     
     <menu name="Ivory">
       <item name="Main"   				       href="/index.html"/>
+      <item name="Bugs"                  href="/bugs.html"/>
       <item name="Dynamic Services"      href="/dynamic.html"/>
       <item name="Metadata"              href="/metadata.html"/>
       <item name="WSDD Configuration"    href="/wsdd.html"/>

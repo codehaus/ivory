@@ -9,12 +9,12 @@
   <body>
     <section name="Overview">
       <p>
-        <a href="http://ws.apache.org/axis">Axis</a> is an Open Source project
-        that provides the fundamentals for SOAP services.  One of the pieces
-        missing from the Axis puzzle currently is easy deployment of existing
-        java classes and components as SOAP services.  The AxisService seeks
-        to fulfill this need by allowing easy deployment of SOAP services
-        at runtime without generated stubs or classes.
+        Ivory provides easy integration between your exiting java classes, Avalon
+        services, and Axis.  It allows easy deployment of soap services with none
+        of the WSDD configuration that Axis normally mandates.  Simply register
+        your class or service and wa-la, you have a new RPC SOAP service.
+        However, it also allows Avalon services to be used with the standard
+        WSDD configuration easily.
       </p>
     </section>
     <section name="Quick Start">
