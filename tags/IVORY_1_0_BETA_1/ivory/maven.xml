@@ -1,0 +1,12 @@
+<project
+  default="doit"
+  xmlns:j="jelly:core"
+  xmlns:define="jelly:define"
+  xmlns:plexus="plexus"
+  xmlns:deploy="deploy"
+  xmlns:ant="jelly:ant"
+  xmlns:maven="jelly:maven"
+  xmlns:sea="sea"
+  xmlns:i="jelly:interaction">
+
+</project>

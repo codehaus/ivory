@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<document>
+
+  <properties>
+    <title>Bugs</title>
+    <author email="dan@envoisolutions.com">Dan Diephouse</author>
+  </properties>
+
+  <body>
+    <section name="Bugs">
+      <p>
+        Things that may bite you:
+        <ul>
+          <li>
+            The servlet web interface leave a little bit to be desired yet.  For example,
+            the service name will come up as "null."
+          </li>
+        </ul>
+      </p>
+    </section>
+ </body>
+</document>

@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<document>
+
+  <properties>
+    <title>Axis Metadata Directives</title>
+    <author email="dan@envoisolutions.com">Dan Diephouse</author>
+  </properties>
+
+  <body>
+    <section name="Axis Metadata Directives">
+      <p>
+        Because Java and XML don't always match up the Axis component now allows
+        you to put metadata in your code thanks to
+        <a href="http://qdox.sourceforge.net">QDox</a> and
+        <a href="http://jakarta.apache.org/commons/sandbox/attributes">Common's
+        Attributes</a>.  There are two directives you can put in your code currently.
+        <table>
+          <tbody>
+            <tr>
+              <th>Directive</th>
+              <th>Description</th>
+            </tr>
+            <tr>
+              <td>@@.return ParameterType(ObjectType.class)</td>
+              <td>
+                This directive tells the component to serialize the specified parameter
+                [param] as the specified ObjectType.class.  This needs to be done for any
+                method that takes or returns a List.  Axis needs to know what kind
+                of array to serialize the List to.  For example, specifying
+                "String[].class" would mean serialize the
+                returned List as an array of Strings.
+              </td>
+            </tr>
+            <tr>
+              <td>@@NonWebMethod()</td>
+              <td>
+                This directive tells the the Axis component to not expose the
+                method as a web service.
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </p>
+      <p>
+        There are also some serializers that support metadata for any bean
+        (not just your service).  These are largely untested and are located
+        in the org.codehuas.axis.serialize package.
+      </p>
+    </section>
+ </body>
+</document>

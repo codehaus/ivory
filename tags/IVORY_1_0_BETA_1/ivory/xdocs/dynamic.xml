@@ -1,0 +1,66 @@
+<?xml version="1.0"?>
+<document>
+
+  <properties>
+    <title>Dynamic Configuration</title>
+    <author email="dan@envoisolutions.com">Dan Diephouse</author>
+  </properties>
+
+  <body>
+    <section name="Dynamic Configuration">
+      <subsection name="Configuration Method">
+        <p>
+          To expose classes and components with your configuration, configure
+          the service like so:
+        </p>
+        <p>
+<source><![CDATA[
+<configuration 
+  	server-config="file://src/test/org/codehaus/plexus/axis/server-config.wsdd">
+  <services>
+  	<avalonService role="com.company.app.YourComponent" name="YourComponent"/>
+  	<classService class="com.company.app.YourObject" name="YourObject"/>
+  </services>
+</configuration> 
+]]></source>
+        </p>
+        <p>
+          where an &lt;avalonService&gt; is loaded through the Avalon ServiceManager
+          and a &lt;classService&gt; is loaded through the ClassLoader.  The "name"
+          attribute specifies the name of the exposed SOAP service.  The "server-config"
+          attribute is a URL specifying where the WSDD file is located.  If none is specified,
+          the Ivory default WSDD is used.
+        </p>
+        <p>
+          After that you will need to configure your view medium, most likely
+          a servlet.  There are Axis servlets for 
+          <a href="http://plexus.codehuas.org">Plexus</a> in CVS.  Patches for
+          for other Avalon containers are very welcome.  After the appropriate
+          entries in your web.xml are entered, point your browser at the
+          service WSDL generation.  The URL is generally something like
+          "http://localhost/app/services/ServiceName?wsdl", depending on how
+          you map the servlets.  See the web.xml in src/conf in the source
+          distribution.
+        </p>
+      </subsection>
+      <subsection name="Security">
+        <p>
+          While, not much has been done with security at this point, there
+          is one nice option that exists.  It would be very possible to
+          use aspects to check if an invocation on a class is a SOAP request.
+          If it is, then one could just execute the method 
+          MessageContext.getCurrentContext() which should give you the
+          appropriate information about the particular SOAP invocation.
+        </p>
+      </subsection>
+      <subsection name="API Method">
+        <p>
+          It is just as easy to register a class using the component's API.  To
+          do so just call exposeService() or exposeClass() and specify the
+          appropriate parameters.  See the 
+          <a href="./apidocs/index.html">Javadocs</a> for more detail.
+        </p>
+      </subsection>
+    </section>
+ </body>
+</document>

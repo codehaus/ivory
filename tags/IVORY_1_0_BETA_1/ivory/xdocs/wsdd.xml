@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<document>
+
+  <properties>
+    <title>Axis, Avalon, and WSDD</title>
+    <author email="dan@envoisolutions.com">Dan Diephouse</author>
+  </properties>
+
+  <body>
+    <section name="Axis, Avalon, and WSDD">
+      <p>
+        A long time back, a 
+        <a href="http://nagoya.apache.org/bugzilla/show_bug.cgi?id=12903">patch</a>
+        was filed by Marcus Crafter for Axis that  has been incorporated into 
+        Ivory (with some modification) to allow Avalon services to be used
+        as an Axis service with ease.  It requires two things:
+        <ol>
+          <li>You use the Axis component provided that embeds axis.  This is because
+              currently it is in charge of registerring the AvalonProvider with
+              Axis.  There are better ways to do this - patches are accepted.
+          </li>
+          <li>
+            Adding the Avalon Provider to your WSDD configuration. See below.
+          </li>
+        </ol>
+        NOTE: Unlike the original patch, this patch uses the ServiceManager 
+        instead of Component Manager. 
+      </p>
+      <subsection name="WSDD Configuration">
+      <p>
+        To use the Avalon provider, just register your service in your WSDD:
+      </p>
+      <p>
+<source><![CDATA[
+<deployment ...>
+  <handler name="AvalonDispatcher" type="java:org.codehaus.axis.provider.AvalonProvider"/>
+   .
+   .
+  <service name="YourService" provider="java:Avalon">
+   .
+   .
+   .
+  </service>
+</deployment>
+]]></source>
+      </p>
+      <p>
+        Don't forget to specify your WSDD file in the Ivory component 
+        <a href="./dynamic.html#Configuration Method">configuration.</a>
+      </p>
+      </subsection>
+    </section>
+ </body>
+</document>

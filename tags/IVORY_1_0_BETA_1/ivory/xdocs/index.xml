@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<document>
+
+  <properties>
+    <title>Overview</title>
+    <author email="dan@envoisolutions.com">Dan Diephouse</author>
+  </properties>
+
+  <body>
+    <section name="Overview">
+      <p>
+        Ivory provides easy integration between your exiting java classes, Avalon
+        services, and Axis.  It allows easy deployment of soap services with none
+        of the WSDD configuration that Axis normally mandates.  
+      </p>
+	  <p>
+		Features include:
+		<ul>
+		  <li>Support for Plexus and Phoenix Containers</li>
+		  <li>Easily expose Avalon services or POJO's as webservices with one method call</li>
+		  <li>Expose Avalon services as web services via WSDD</li>
+		  <li>Metadata support</li>
+		  <li>Runs Axis as embedded Avalon component</li>
+		  <li>Support for Axis 1.2 Beta 2</li>
+		</ul>
+	  </p>
+    </section>
+    <section name="Quick Start">
+      <p>
+        There are two ways to use the AxisService.  First, you can configure
+        your services <a href="./dynamic.html">dynamically</a>.  Simply register
+        your class or service and viola, you have a new RPC SOAP service.
+        Ivory also allows Avalon services to be used with the standard
+        <a href="./wsdd.html">WSDD Configuration</a> easily.
+      </p>
+      <p>
+        Distributions can be found <a href="http://dist.codehaus.org/ivory/distributions">here</a>
+      </p>
+    </section>
+ </body>
+</document>
