@@ -1,15 +1,15 @@
 package org.codehaus.ivory.plexus;
 
+import javax.servlet.ServletContext;
+
 import org.apache.avalon.framework.service.ServiceException;
 import org.apache.avalon.framework.service.ServiceManager;
 import org.apache.axis.AxisFault;
+import org.apache.axis.AxisProperties;
 import org.apache.axis.server.AxisServer;
 import org.apache.axis.transport.http.AdminServlet;
 import org.codehaus.ivory.AxisService;
 import org.codehaus.ivory.DefaultAxisService;
-import org.codehaus.plexus.PlexusContainer;
-import org.codehaus.plexus.personality.avalon.AvalonServiceManager;
-import org.codehaus.plexus.servlet.PlexusServletUtils;
 
 /**
  * An implementation of the Axis AdminServlet which retrieves the AxisEngine
@@ -69,4 +69,26 @@ public class PlexusAdminServlet
         if ( axisService != null )
         	manager.release( axisService );
     }
+    
+    protected String getOption(ServletContext context,
+			String param,
+			String dephault)
+	{
+		String value = AxisProperties.getProperty(param);
+
+		if (value == null) value = getInitParameter(param);
+
+		if (value == null) value = context.getInitParameter(param);
+		try
+		{
+			AxisServer engine = getEngine();
+			if (value == null && engine != null) value = (String) engine
+					.getOption(param);
+		}
+		catch (AxisFault axisFault)
+		{
+		}
+
+		return (value != null) ? value : dephault;
+	}
 }

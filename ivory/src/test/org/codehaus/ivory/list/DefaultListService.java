@@ -13,7 +13,7 @@ public class DefaultListService
 
     /**
      * @see org.codehaus.ivory.axis.list.ListService#getDevelopers()
-     * @axis.serialize.out [java.lang.String;
+     * @@ParameterType("[java.lang.String;")
      */
     public List getDevelopers()
     {

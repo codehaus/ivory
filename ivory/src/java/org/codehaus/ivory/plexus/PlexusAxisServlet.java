@@ -4,12 +4,14 @@ import java.io.PrintWriter;
 import java.net.HttpURLConnection;
 import java.util.Iterator;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.avalon.framework.service.ServiceException;
 import org.apache.avalon.framework.service.ServiceManager;
 import org.apache.axis.AxisEngine;
 import org.apache.axis.AxisFault;
+import org.apache.axis.AxisProperties;
 import org.apache.axis.ConfigurationException;
 import org.apache.axis.MessageContext;
 import org.apache.axis.WSDDEngineConfiguration;
@@ -143,4 +145,26 @@ public class PlexusAxisServlet
 //                           "</p>");
 //        }
 //    }
+    
+    protected String getOption(ServletContext context,
+            String param,
+            String dephault)
+    {
+        String value = AxisProperties.getProperty(param);
+
+        if (value == null) value = getInitParameter(param);
+
+        if (value == null) value = context.getInitParameter(param);
+        try
+        {
+            AxisServer engine = getEngine();
+            if (value == null && engine != null) value = (String) engine
+                    .getOption(param);
+        }
+        catch (AxisFault axisFault)
+        {
+        }
+
+        return (value != null) ? value : dephault;
+    }
 }
