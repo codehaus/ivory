@@ -64,6 +64,7 @@ public class PlexusAdminServlet
     {
     	super.destroy();
     	
-    	manager.release( axisService );
+        if ( axisService != null )
+        	manager.release( axisService );
     }
 }
