@@ -68,7 +68,7 @@
     
 	<dependency>
       <id>commons-attributes</id>
-      <version>0.1</version>
+      <version>commons-attributes-20030728.175909.jar</version>
       <url>http://jakarta.apache.org/commons/sandbox/attributes</url>
     </dependency>
     
@@ -89,11 +89,6 @@
       <version>1.5.1</version>
     </dependency>
 
-	<dependency>
-      <id>jaxrpc</id>
-      <version>1.0</version>
-    </dependency>
-
     <dependency>
       <id>plexus</id>
       <version>0.5</version>
@@ -103,12 +98,6 @@
       <id>qdox</id>
       <version>1.1</version>
       <url>http://jakarta.apache.org/commons/sandbox/attributes</url>
-    </dependency>
-    
-    <dependency>
-      <id>saaj</id>
-      <version>1.1</version>
-      <url>http://xml.apache.org/axis/</url>
     </dependency>
 
     <dependency>
