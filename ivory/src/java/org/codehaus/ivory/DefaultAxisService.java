@@ -346,4 +346,9 @@ public class DefaultAxisService
     {
         this.manager = manager;
     }
+    
+    public ServiceManager getServiceManager()
+    {
+        return manager;
+    }
 }

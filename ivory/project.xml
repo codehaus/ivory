@@ -9,7 +9,7 @@
   <organization>
     <name>Codehaus</name>
     <url>http://www.codehaus.org/</url>
-    <logo>http://images.codehaus.org/codehaus.gif</logo>
+    <logo>http://images.codehaus.org/codehaus-small.gif</logo>
   </organization>
   
   <description>
@@ -19,7 +19,8 @@
   <url>http://ivory.codehaus.org/</url>
   <siteAddress>ivory.codehaus.org</siteAddress>
   <siteDirectory>/www/ivory.codehaus.org</siteDirectory>
-  
+  <distributionSite>dist.codehaus.org</distributionSite>
+  <distributionDirectory>/www/dist.codehaus.org/</distributionDirectory>
   <repository>
     <connection>scm:cvs:pserver:anonymous@cvs.codehaus.org:/cvsroot/ivory:ivory</connection>
     <url>http://ivory.cvs.codehaus.org/</url>
@@ -101,6 +102,12 @@
       <version>1.0-beta-1</version>
     </dependency>
 
+    <dependency>
+      <groupId>plexus</groupId>
+      <artifactId>xstream</artifactId>
+      <version>0.1-jvz1</version>
+    </dependency>
+    
     <dependency>
       <groupId>plexus</groupId>
       <artifactId>plexus-utils</artifactId>
