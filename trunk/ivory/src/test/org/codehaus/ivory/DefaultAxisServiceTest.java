@@ -21,7 +21,7 @@ public class DefaultAxisServiceTest
     
     public void testAxisService() throws Exception
     {
-    	AxisService service = ( AxisService ) getComponent( AxisService.ROLE );
+    	AxisService service = ( AxisService ) lookup( AxisService.ROLE );
     	
     	assertNotNull( service.getAxisServer() );
     }

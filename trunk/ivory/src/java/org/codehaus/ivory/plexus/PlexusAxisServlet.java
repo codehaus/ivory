@@ -17,8 +17,8 @@ import org.apache.axis.handlers.soap.SOAPService;
 import org.apache.axis.server.AxisServer;
 import org.apache.axis.transport.http.AxisServlet;
 import org.apache.axis.utils.Messages;
-import org.apache.plexus.servlet.PlexusServlet;
 import org.codehaus.ivory.AxisService;
+import org.codehaus.plexus.servlet.PlexusServletUtils;
 
 /**
  * An implementation of the Axis AxisServlet which retrieves the AxisEngine
@@ -68,8 +68,7 @@ public class PlexusAxisServlet
 	 */
 	public ServiceManager getServiceManager()
 	{
-		return (ServiceManager) getServletContext().getAttribute( 
-			PlexusServlet.SERVICE_MANAGER_KEY );
+        return PlexusServletUtils.getServiceManager( getServletContext() );
 	}
     
 	public void destroy()
