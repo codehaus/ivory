@@ -8,7 +8,6 @@ import java.util.List;
 import org.apache.axis.description.OperationDesc;
 import org.apache.axis.description.ParameterDesc;
 import org.apache.axis.description.ServiceDesc;
-import org.apache.commons.attributes.AttributeUtil;
 import org.apache.commons.attributes.Attributes;
 import org.codehaus.ivory.attributes.NonWebMethod;
 import org.codehaus.ivory.attributes.ParameterType;
@@ -80,14 +79,15 @@ public class IvoryServiceDesc
              Attributes.hasReturnAttributeType( method, ParameterType.class ) )
         {
             Collection allAttrs = Attributes.getReturnAttributes(method);
-            Collection retAttrs =
-                AttributeUtil.getObjectsWithAttributeType(
-                    allAttrs,
-                    ParameterType.class);
             
-            ParameterType type = (ParameterType) retAttrs.iterator().next();
-            
-            changeParameterType( parameter, type );
+            for ( Iterator itr = allAttrs.iterator(); itr.hasNext(); )
+            {
+                Object attr = itr.next();
+                if ( attr instanceof ParameterType )
+                {
+                    changeParameterType( parameter, (ParameterType) attr );        
+                }
+            }
         }
         else if (Attributes.hasReturnAttributeType( method, ParameterType.class ))
         {
@@ -95,14 +95,15 @@ public class IvoryServiceDesc
             // get everything after "in"
             int num = new Integer(name.substring( 2 )).intValue();
             Collection allAttrs = Attributes.getParameterAttributes(method, num);
-            Collection retAttrs =
-                AttributeUtil.getObjectsWithAttributeType(
-                    allAttrs,
-                    ParameterType.class);
             
-            ParameterType type = (ParameterType) retAttrs.iterator().next();
-            
-            changeParameterType( parameter, type );
+            for ( Iterator itr = allAttrs.iterator(); itr.hasNext(); )
+            {
+                Object attr = itr.next();
+                if ( attr instanceof ParameterType )
+                {
+                    changeParameterType( parameter, (ParameterType) attr );        
+                }
+            }
         }
     }
 
