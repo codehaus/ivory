@@ -1,6 +1,7 @@
 package org.codehaus.ivory;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.InputStream;
 
 import javax.xml.namespace.QName;
@@ -188,7 +189,8 @@ public class DefaultAxisService
                 e.printStackTrace();
             }
             
-    		fileProvider = new FileProvider( serverConfig );
+            getLogger().info( "Found AXIS configuration at " + configFile.getAbsolutePath() );
+    		fileProvider = new FileProvider( new FileInputStream(configFile) );
     	}
 
         /* Wrap the FileProvider with a SimpleProvider.  This needs to be done

@@ -2,6 +2,8 @@ package org.codehaus.ivory.list;
 
 import org.codehaus.ivory.plexus.IvoryTestCase;
 
+import com.meterware.httpunit.WebResponse;
+
 /**
  * Tests the DefaultAxisService.
  * 
@@ -21,14 +23,14 @@ public class ListServiceTest extends IvoryTestCase
     	
     	String wsdl = getWSDL( "List" );
         assertStringNotInBody( "wsdl", "secretMethod" );
-/*	
+
 		WebResponse response = 
 			newClient().getResponse("http://localhost/services/List?method=getDevelopers");
 		
 		assertIsXml( response.getText() );
 		assertStringInBody( response, "Dan Diephouse" );
 		assertStringInBody( response, "Jason van Zyl" );
-*/
+
      }        
 }
 

@@ -31,7 +31,7 @@ public class DefaultAxisServiceTest
 		assertValidWSDL( "Version", "getVersion" );
 		assertValidWSDL( "SparePartInfo", "getPartInfo" );
 	}
-    /*
+    
     public void testVersionMethod() throws Exception 
     {
 		WebResponse response = newClient().getResponse("http://localhost/services/Version?method=getVersion");
@@ -60,6 +60,6 @@ public class DefaultAxisServiceTest
 		
 		assertIsXml( response.getText() );
         assertStringInBody( response, "<SKU" );
-    }*/
+    }
 }
 
