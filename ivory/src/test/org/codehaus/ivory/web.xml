@@ -12,7 +12,6 @@
     <servlet-class>
         org.codehaus.ivory.plexus.PlexusAxisServlet
     </servlet-class>
-    <load-on-start>1</load-on-start>
   </servlet>
 
   <servlet>
@@ -23,6 +22,18 @@
     </servlet-class>
   </servlet>
 
+  <servlet>
+    <servlet-name>PlexusTestServlet</servlet-name>
+    <servlet-class>
+        org.codehaus.ivory.PlexusTestServlet
+    </servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>PlexusTestServlet</servlet-name>
+    <url-pattern>/servlet/PlexusTestServlet</url-pattern>
+  </servlet-mapping>
+  
   <servlet-mapping>
     <servlet-name>AxisServlet</servlet-name>
     <url-pattern>/servlet/AxisServlet</url-pattern>

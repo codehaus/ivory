@@ -1,14 +1,15 @@
 package org.codehaus.ivory.plexus;
 
 import javax.servlet.ServletContext;
-import org.apache.avalon.framework.service.ServiceException;
-import org.apache.avalon.framework.service.ServiceManager;
+
 import org.apache.axis.AxisFault;
 import org.apache.axis.AxisProperties;
 import org.apache.axis.server.AxisServer;
 import org.apache.axis.transport.http.AxisServlet;
 import org.codehaus.ivory.AxisService;
-import org.codehaus.ivory.DefaultAxisService;
+import org.codehaus.plexus.PlexusConstants;
+import org.codehaus.plexus.PlexusContainer;
+import org.codehaus.plexus.component.repository.exception.ComponentLookupException;
 
 /**
  * An implementation of the Axis AxisServlet which retrieves the AxisEngine
@@ -20,54 +21,59 @@ import org.codehaus.ivory.DefaultAxisService;
 public class PlexusAxisServlet 
     extends AxisServlet
 {
-	ServiceManager manager;
-	
-	AxisService axisService;
-	
-	public PlexusAxisServlet()
-	{
-	}
+	PlexusContainer manager;
     
-	/**
-	 * Provide the AxisEngine to the base servlet class.
-	 * 
-	 * @return AxisServer
-	 * @see org.apache.axis.transport.http.AxisServletBase#getEngine()
-	 */
-	public AxisServer getEngine() throws AxisFault
-	{
-		manager = getServiceManager();
-        
-		try
-		{
-			axisService = ( AxisService ) manager.lookup( AxisService.ROLE );
-		}
-		catch (ServiceException e)
-		{
-			throw new AxisFault( "Could not find the AxisService.", e );
-		}
-        
-		return axisService.getAxisServer();
-	}
+    AxisService axisService;
     
-	/**
-	 * Retrieve the ServiceBroker from the ServletContext.  This presupposes
-	 * that the installation is using Plexus.
-	 * 
-	 * @return ServiceBroker
-	 */
-    public ServiceManager getServiceManager()
+    public PlexusAxisServlet()
     {
-        return DefaultAxisService.getServiceManager();
     }
     
-	public void destroy()
-	{
-		super.destroy();
-    	
-        if ( axisService != null )
+    /**
+     * Provide the AxisEngine to the base servlet class.
+     * 
+     * @return AxisServer
+     * @see org.apache.axis.transport.http.AxisServletBase#getEngine()
+     */
+    public AxisServer getEngine() throws AxisFault
+    {
+        manager = getPlexusContainer();
+                
+        try
+        {
+            axisService = ( AxisService ) manager.lookup( AxisService.ROLE );
+        }
+        catch (ComponentLookupException e)
+        {
+            throw new AxisFault( "Could not find the AxisService.", e );
+        }
+        
+        return axisService.getAxisServer();
+    }
+    
+    /**
+     * Retrieve the PlexusContainer from the ServletContext.
+     * 
+     * @return ServiceBroker
+     */
+    public PlexusContainer getPlexusContainer()
+    {
+        return (PlexusContainer) getServletContext().getAttribute( PlexusConstants.PLEXUS_KEY );
+    }
+    
+    public void destroy()
+    {
+        super.destroy();
+        
+        if ( axisService != null ) try
+        {
             manager.release( axisService );
-	}
+        }
+        catch (Exception e)
+        {
+            log("Couldn't release AxisService.", e);
+        }
+    }
 
     /**
      * respond to the ?list command.
