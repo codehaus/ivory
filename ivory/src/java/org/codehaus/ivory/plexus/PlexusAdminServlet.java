@@ -5,8 +5,8 @@ import org.apache.avalon.framework.service.ServiceManager;
 import org.apache.axis.AxisFault;
 import org.apache.axis.server.AxisServer;
 import org.apache.axis.transport.http.AdminServlet;
-import org.apache.plexus.servlet.PlexusServlet;
 import org.codehaus.ivory.AxisService;
+import org.codehaus.plexus.servlet.PlexusServletUtils;
 
 /**
  * An implementation of the Axis AdminServlet which retrieves the AxisEngine
@@ -35,7 +35,7 @@ public class PlexusAdminServlet
     public AxisServer getEngine() throws AxisFault
     {
         manager = getServiceManager();
-        
+                
         try
         {
             axisService = ( AxisService ) manager.lookup( AxisService.ROLE );
@@ -56,8 +56,7 @@ public class PlexusAdminServlet
      */
     public ServiceManager getServiceManager()
     {
-        return (ServiceManager) getServletContext().getAttribute( 
-            PlexusServlet.SERVICE_MANAGER_KEY );
+        return PlexusServletUtils.getServiceManager( getServletContext() );
     }
     
     public void destroy()
