@@ -198,10 +198,10 @@ public class MetaBeanUtils extends BeanUtils
             if (!Attributes.hasAttributeType(m, NonWebMethod.class))
             {
                 filteredPds.add(rawPd[i]);
-                System.out.println("[ivory] added method " + m.getName());
             }
             else
             {
+                // TODO: How should we log this?
                 System.out.println("[ivory] skipped method " + m.getName());
             }
         }

@@ -21,20 +21,18 @@
               <th>Description</th>
             </tr>
             <tr>
-              <td>@axis.serialize.[param] [ObjectType]</td>
+              <td>@@.return ParameterType(ObjectType.class)</td>
               <td>
                 This directive tells the component to serialize the specified parameter
-                [param] as the specified [ObjectType].  This needs to be done for any
+                [param] as the specified ObjectType.class.  This needs to be done for any
                 method that takes or returns a List.  Axis needs to know what kind
                 of array to serialize the List to.  For example, specifying
-                "@axis.serialize.out [Ljava.lang.String;" would mean serialize the
-                returned List as an array of Strings.  Or 
-                "@axis.serialize.in0 [Lcom.company.Employee;" would mean serialize the
-                first parameter for the method as an array of Employee objects.
+                "String[].class" would mean serialize the
+                returned List as an array of Strings.
               </td>
             </tr>
             <tr>
-              <td>@axis.hidemethod</td>
+              <td>@@NonWebMethod()</td>
               <td>
                 This directive tells the the Axis component to not expose the
                 method as a web service.

@@ -88,5 +88,13 @@
         </p>
       </subsection>
     </section>
+    <section name="Compiling">
+      <p>
+		To be able to compile the ivory distribution you must have maven
+		installed as well as the commons-attributes plugin which can be
+		downloaded
+		<a href="http://jakarta.apache.org/commons/attributes/">here</a>.
+	  </p>
+    </section>
  </body>
 </document>

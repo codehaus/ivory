@@ -48,7 +48,7 @@
       <configuration>
       	<services>
       	  <avalonService role="org.codehaus.ivory.list.ListService"
-      	                 name="List"/>
+      	                 name="ListService"/>
       	</services>
       </configuration>            
     </component>

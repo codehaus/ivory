@@ -10,10 +10,8 @@ import java.util.List;
 public class DefaultListService
 	implements ListService
 {
-
     /**
      * @see org.codehaus.ivory.axis.list.ListService#getDevelopers()
-     * @@ParameterType("[java.lang.String;")
      */
     public List getDevelopers()
     {

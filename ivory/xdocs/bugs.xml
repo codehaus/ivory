@@ -12,15 +12,6 @@
         Things that may bite you:
         <ul>
           <li>
-            Right now, when AXIS generates your WSDL with an XML Schema
-            describing your objects, it puts the objects in the default namespace -
-            http://xml.apache.org/axis/java.  I have a patch that should fix this
-            and will hopefully be incorporated.  See
-            <a href="http://nagoya.apache.org/bugzilla/show_bug.cgi?id=18084 ">Bug 18084.</a>
-            A prebuilt copy of the Axis jar which incorporates this change can be found
-            <a href="./axis-1.2-SNAPSHOT.jar">here.</a>
-          </li>
-          <li>
             The servlet web interface leave a little bit to be desired yet.  For example,
             the service name will come up as "null."
           </li>
