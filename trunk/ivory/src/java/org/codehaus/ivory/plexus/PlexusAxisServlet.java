@@ -1,30 +1,14 @@
 package org.codehaus.ivory.plexus;
 
-import java.io.PrintWriter;
-import java.net.HttpURLConnection;
-import java.util.Iterator;
-
 import javax.servlet.ServletContext;
-import javax.servlet.http.HttpServletResponse;
-
 import org.apache.avalon.framework.service.ServiceException;
 import org.apache.avalon.framework.service.ServiceManager;
-import org.apache.axis.AxisEngine;
 import org.apache.axis.AxisFault;
 import org.apache.axis.AxisProperties;
-import org.apache.axis.ConfigurationException;
-import org.apache.axis.MessageContext;
-import org.apache.axis.WSDDEngineConfiguration;
-import org.apache.axis.configuration.SimpleProvider;
-import org.apache.axis.handlers.soap.SOAPService;
 import org.apache.axis.server.AxisServer;
 import org.apache.axis.transport.http.AxisServlet;
-import org.apache.axis.utils.Messages;
 import org.codehaus.ivory.AxisService;
 import org.codehaus.ivory.DefaultAxisService;
-import org.codehaus.plexus.PlexusContainer;
-import org.codehaus.plexus.personality.avalon.AvalonServiceManager;
-import org.codehaus.plexus.servlet.PlexusServletUtils;
 
 /**
  * An implementation of the Axis AxisServlet which retrieves the AxisEngine
