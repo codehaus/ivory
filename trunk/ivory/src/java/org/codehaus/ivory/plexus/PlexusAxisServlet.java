@@ -76,7 +76,8 @@ public class PlexusAxisServlet
 	{
 		super.destroy();
     	
-		manager.release( axisService );
+        if ( axisService != null )
+            manager.release( axisService );
 	}
 
     /**
