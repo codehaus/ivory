@@ -17,12 +17,12 @@
   </description>
   
   <url>http://ivory.codehaus.org/</url>
-  <cvsWebUrl>http://cvs.werken.com/viewcvs.cgi/ivory/?cvsroot=plexus</cvsWebUrl>
+  <cvsWebUrl>http://ivory.cvs.codehaus.org/</cvsWebUrl>
   <siteAddress>ivory.codehaus.org</siteAddress>
   <siteDirectory>/www/ivory.codehaus.org</siteDirectory>
   
   <repository>
-    <connection>scm:cvs:pserver:anonymous@cvs.werken.com:/cvsroot/ivory:ivory</connection>
+    <connection>scm:cvs:pserver:anonymous@cvs.codehaus.org:/cvsroot/ivory:ivory</connection>
     <url></url>
   </repository>
 
