@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project>
+  <groupId>ivory</groupId>
+  <id>ivory</id>
+  <name>Ivory</name>
+  <currentVersion>1.0-alpha-4</currentVersion>
+  <shortDescription>An Axis component.</shortDescription>
+  <package>org.codehaus.ivory</package>
+  <organization>
+    <name>Codehaus</name>
+    <url>http://www.codehaus.org/</url>
+    <logo>http://images.werken.com/codehaus.gif</logo>
+  </organization>
+  
+  <description>
+    An Axis component which also allows easy deployment of SOAP servics.
+  </description>
+  
+  <url>http://ivory.codehaus.org/</url>
+  <cvsWebUrl>http://cvs.werken.com/viewcvs.cgi/ivory/?cvsroot=plexus</cvsWebUrl>
+  <siteAddress>ivory.codehaus.org</siteAddress>
+  <siteDirectory>/www/ivory.codehaus.org</siteDirectory>
+  
+  <repository>
+    <connection>scm:cvs:pserver:anonymous@cvs.werken.com:/cvsroot/plexus:ivory</connection>
+    <url></url>
+  </repository>
+
+  <versions/>
+  <branches/>
+
+  <mailingLists>
+    <mailingList>
+      <name>Ivory Developer List</name>
+      <subscribe>http://lists.werken.com/mailman/listinfo/ivory-dev</subscribe>
+      <unsubscribe>http://lists.werken.com/mailman/listinfo/ivorys-dev</unsubscribe>
+    </mailingList>
+  </mailingLists>
+  
+  <developers>
+    <developer>
+      <name>Dan Diephouse</name>
+      <id>dandiep</id>
+      <email>dan@envoisolutions.com</email>
+      <organization>Envoi solutions</organization>
+      <roles>
+        <role>Developer</role>
+      </roles>
+    </developer>
+  </developers>
+    
+  <dependencies>
+    
+    <dependency>
+      <id>avalon-framework</id>
+      <version>4.1.4</version>
+    </dependency>
+    
+    <dependency>
+      <id>bcel</id>
+      <version>5.0</version>
+    </dependency>
+    
+    <dependency>
+      <id>axis</id>
+      <version>1.2-SNAPSHOT</version>
+      <url>http://ws.apache.org/axis/</url>      
+    </dependency>
+    
+	<dependency>
+      <id>commons-attributes</id>
+      <version>0.1</version>
+      <url>http://jakarta.apache.org/commons/sandbox/attributes</url>
+    </dependency>
+    
+	<dependency>
+      <id>commons-discovery</id>
+      <version>1.0-dev.20021010.101254</version>
+      <url>http://jakarta.apache.org/commons/sandbox/discovery.html</url>
+    </dependency>
+
+    <dependency>
+      <id>commons-logging</id>
+      <version>1.0.2</version>
+      <url>http://jakarta.apache.org/commons/</url>
+    </dependency>
+
+	<dependency>
+      <id>httpunit</id>
+      <version>1.5.1</version>
+    </dependency>
+
+	<dependency>
+      <id>jaxrpc</id>
+      <version>1.0</version>
+    </dependency>
+
+    <dependency>
+      <id>plexus</id>
+      <version>0.5</version>
+    </dependency>
+    
+	<dependency>
+      <id>qdox</id>
+      <version>1.1</version>
+      <url>http://jakarta.apache.org/commons/sandbox/attributes</url>
+    </dependency>
+    
+    <dependency>
+      <id>saaj</id>
+      <version>1.1</version>
+      <url>http://xml.apache.org/axis/</url>
+    </dependency>
+
+    <dependency>
+      <id>servletapi</id>
+      <version>2.3</version>
+    </dependency>
+    
+    <dependency>
+      <id>wsdl4j</id>
+      <version>1.0</version>
+      <url>http://www-124.ibm.com/developerworks/projects/wsdl4j/</url>
+    </dependency>
+
+    <!--
+     |
+     | Common test-time dependencies for all the components.
+     |
+     -->
+
+    <dependency>
+      <id>classworlds</id>
+      <version>1.0-beta-5</version>
+    </dependency>
+    
+    <dependency>
+      <id>junit</id>
+      <version>3.8.1</version>
+    </dependency>
+    
+    <dependency>
+      <groupId>xpp3</groupId>
+      <artifactId>xpp3</artifactId>
+      <version>1.1.2a</version>
+    </dependency>
+       
+  </dependencies>
+ 
+ 
+  <build>
+    <sourceDirectory>${basedir}/src/java</sourceDirectory>
+    <unitTestSourceDirectory>${basedir}/src/test</unitTestSourceDirectory>
+    
+    <unitTest>
+      <includes>
+        <include>**/*Test.java</include>
+        <include>**/*TestCase.java</include>
+      </includes>
+      <excludes>
+        <exclude>**/*Abstract*.java</exclude>
+      </excludes>
+      
+      <resources>
+        <resource>
+          <directory>${basedir}/src/test</directory>
+          <includes>
+            <include>**/*.xml</include>
+            <include>**/*.wssd</include>
+          </includes>
+        </resource>
+      </resources>
+    </unitTest>
+  
+    <resources>
+      <resource>
+        <directory>${basedir}/src/conf</directory>
+        <targetPath>org/codehaus/axis</targetPath>
+        <includes>
+          <include>**/*.wsdd</include>
+        </includes>
+      </resource>
+      <resource>
+        <directory>${basedir}/src/conf</directory>
+        <targetPath>org/codehaus/axis/plexus</targetPath>
+        <includes>
+          <include>**/web.xml</include>
+        </includes>
+      </resource>
+    </resources>
+  </build>
+  
+</project>

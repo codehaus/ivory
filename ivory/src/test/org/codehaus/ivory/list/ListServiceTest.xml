@@ -1,0 +1,22 @@
+<plexus>
+  <components>
+
+    <component>
+      <role>org.codehaus.ivory.AxisService</role>
+      <implementation>org.codehaus.ivory.DefaultAxisService</implementation>
+      <configuration>
+      	<services>
+      	  <avalonService role="org.codehaus.ivory.list.ListService"
+      	                 name="List"/>
+      	</services>
+      </configuration>            
+    </component>
+
+    <component>
+      <role>org.codehaus.ivory.list.ListService</role>
+      <implementation>org.codehaus.ivory.list.DefaultListService</implementation>
+      <configuration/>
+    </component>
+
+  </components>
+</plexus>
