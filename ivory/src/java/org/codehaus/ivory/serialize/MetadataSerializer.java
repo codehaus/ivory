@@ -10,6 +10,8 @@ import org.apache.axis.description.FieldDesc;
 import org.apache.axis.description.TypeDesc;
 import org.apache.axis.encoding.ser.BeanSerializer;
 import org.apache.axis.utils.BeanPropertyDescriptor;
+import org.apache.axis.utils.BeanUtils;
+import org.apache.axis.utils.FieldPropertyDescriptor;
 import org.w3c.dom.Element;
 
 /**
@@ -93,7 +95,7 @@ public class MetadataSerializer extends BeanSerializer
             if (superTypeDesc != null) {
                 superPd = superTypeDesc.getPropertyDescriptors();
             } else {
-                superPd = MetaBeanUtils.getPd(superClass, null);
+                superPd = BeanUtils.getPd(superClass, null);
             }
         } else {
             e = complexType;
@@ -149,7 +151,7 @@ public class MetadataSerializer extends BeanSerializer
                 if (field != null) {
                     QName qname = field.getXmlName();
                     QName fieldXmlType = field.getXmlType();
-                    boolean isAnonymous = fieldXmlType.getLocalPart().startsWith(">");
+                    boolean isAnonymous = fieldXmlType != null && fieldXmlType.getLocalPart().startsWith(">");
 
                     if (qname != null) {
                         // FIXME!
@@ -164,11 +166,12 @@ public class MetadataSerializer extends BeanSerializer
                         writeAttribute(types,
                                        propName,
                                        fieldType,
-                                       field.getXmlType(),
+                                       fieldXmlType,
                                        complexType);
                     } else {
                         writeField(types,
                                    propName,
+                                   fieldXmlType,
                                    fieldType,
                                    propertyDescriptor[i].isIndexed(),
                                    field.isMinOccursZero(),
@@ -177,12 +180,14 @@ public class MetadataSerializer extends BeanSerializer
                 } else {
                     writeField(types,
                                propName,
+                               null,
                                fieldType,
                                propertyDescriptor[i].isIndexed(), false, all, false);
                 }
             } else {
                 writeField(types,
                            propName,
+                           null,
                            fieldType,
                            propertyDescriptor[i].isIndexed(), false, all, false);
             }

@@ -1,5 +1,6 @@
 package org.codehaus.ivory;
 
+import java.io.File;
 import java.io.InputStream;
 
 import javax.xml.namespace.QName;
@@ -9,10 +10,14 @@ import org.apache.avalon.framework.activity.Startable;
 import org.apache.avalon.framework.configuration.Configurable;
 import org.apache.avalon.framework.configuration.Configuration;
 import org.apache.avalon.framework.configuration.ConfigurationException;
+import org.apache.avalon.framework.context.Context;
+import org.apache.avalon.framework.context.ContextException;
+import org.apache.avalon.framework.context.Contextualizable;
 import org.apache.avalon.framework.logger.AbstractLogEnabled;
 import org.apache.avalon.framework.service.ServiceException;
 import org.apache.avalon.framework.service.ServiceManager;
 import org.apache.avalon.framework.service.Serviceable;
+
 import org.apache.axis.AxisFault;
 import org.apache.axis.configuration.FileProvider;
 import org.apache.axis.configuration.SimpleProvider;
@@ -26,10 +31,12 @@ import org.apache.axis.handlers.soap.SOAPService;
 import org.apache.axis.providers.java.RPCProvider;
 import org.apache.axis.server.AxisServer;
 import org.apache.axis.wsdl.fromJava.Namespaces;
+
 import org.codehaus.ivory.provider.AvalonProvider;
 import org.codehaus.ivory.provider.IvoryAvalonProvider;
 import org.codehaus.ivory.provider.IvoryProvider;
 import org.codehaus.ivory.provider.WSDDJavaAvalonProvider;
+import org.codehaus.ivory.util.AvalonContextUtilities;
 
 /**
  * The default AxisService implementation.
@@ -39,13 +46,13 @@ import org.codehaus.ivory.provider.WSDDJavaAvalonProvider;
  */
 public class DefaultAxisService 
     extends AbstractLogEnabled
-    implements AxisService, Startable, Configurable, Initializable, Serviceable
+    implements AxisService, Startable, Configurable, Initializable, Serviceable, Contextualizable
 {
-
+    /** We hold a static ServiceManager so the servlets can get at it. */
+    private static ServiceManager manager;
+    
     public static final QName QNAME_AVALONRPC_PROVIDER =
         new QName(WSDDConstants.URI_WSDD_JAVA, "Avalon");
-    
-    private ServiceManager manager;
 
     protected static final String SERVER_CONFIG_KEY = "server-config";
     
@@ -60,6 +67,8 @@ public class DefaultAxisService
     
     private Configuration services;
 
+    private Context context;
+    
     /**
      * @param configuration
      * @throws ConfigurationException
@@ -169,7 +178,16 @@ public class DefaultAxisService
     	else
     	{
 			getLogger().debug( "Using server-config " + serverConfig + "." );
-    		
+            File configFile = null;
+            try
+            {
+                configFile = AvalonContextUtilities.getFile(context, serverConfig);
+            }
+            catch (Exception e)
+            {
+                e.printStackTrace();
+            }
+            
     		fileProvider = new FileProvider( serverConfig );
     	}
 
@@ -333,7 +351,7 @@ public class DefaultAxisService
         TypeMappingRegistry registry = service.getTypeMappingRegistry();        
         
         TypeMappingImpl tm = (TypeMappingImpl) registry.getDefaultTypeMapping();
-        tm.setDoAutoTypes( true );
+        //tm.setDoAutoTypes( true );
         
         // Tell the axis configuration about our new service.
         provider.deployService( serviceName, service );
@@ -344,11 +362,19 @@ public class DefaultAxisService
      */
     public void service(ServiceManager manager) throws ServiceException
     {
-        this.manager = manager;
+        DefaultAxisService.manager = manager;
     }
     
-    public ServiceManager getServiceManager()
+    public static ServiceManager getServiceManager()
     {
         return manager;
     }
+
+	/**
+	 * @see org.apache.avalon.framework.context.Contextualizable#contextualize(org.apache.avalon.framework.context.Context)
+	 */
+	public void contextualize(Context context) throws ContextException
+	{
+		this.context = context;
+	}
 }

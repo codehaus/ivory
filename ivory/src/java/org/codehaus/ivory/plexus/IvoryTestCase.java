@@ -68,9 +68,8 @@ import org.apache.axis.soap.SOAPConstants;
 import org.apache.axis.transport.local.LocalTransport;
 import org.apache.axis.utils.XMLUtils;
 import org.codehaus.ivory.AxisService;
-import org.codehaus.ivory.DefaultAxisService;
+import org.codehaus.plexus.PlexusConstants;
 import org.codehaus.plexus.PlexusTestCase;
-import org.codehaus.plexus.servlet.PlexusServlet;
 import org.w3c.dom.Document;
 import org.xml.sax.SAXException;
 
@@ -113,24 +112,12 @@ public class IvoryTestCase extends PlexusTestCase
         setVerbose( Boolean.getBoolean( VERBOSE_KEY ) );
     
         HttpUnitOptions.setExceptionsThrownOnErrorStatus(true);
-
-        DefaultAxisService axisService = (DefaultAxisService) lookup( AxisService.ROLE );
-        manager = (ServiceManager) axisService.getServiceManager();
-    
+        
         InputStream is =
             getClass().getResourceAsStream(
                 "/org/codehaus/ivory/plexus/web.xml");
     
         sr = new ServletRunner(is);
-        
-        ServletUnitClient client = newClient();
-    
-        // There must be a better way to do this.
-        InvocationContext ic =
-            client.newInvocation("http://localhost/servlet/AxisServlet");
-        ServletContext context =
-            ic.getServlet().getServletConfig().getServletContext();
-        context.setAttribute(PlexusServlet.SERVICE_MANAGER_KEY, manager);
     }
     
     protected ServletUnitClient newClient() throws Exception
