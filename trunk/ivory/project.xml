@@ -3,7 +3,7 @@
   <groupId>ivory</groupId>
   <id>ivory</id>
   <name>Ivory</name>
-  <currentVersion>1.0-alpha-4</currentVersion>
+  <currentVersion>1.0-alpha-5</currentVersion>
   <shortDescription>An Axis component.</shortDescription>
   <package>org.codehaus.ivory</package>
   <organization>
@@ -22,7 +22,7 @@
   <siteDirectory>/www/ivory.codehaus.org</siteDirectory>
   
   <repository>
-    <connection>scm:cvs:pserver:anonymous@cvs.werken.com:/cvsroot/plexus:ivory</connection>
+    <connection>scm:cvs:pserver:anonymous@cvs.werken.com:/cvsroot/ivory:ivory</connection>
     <url></url>
   </repository>
 
@@ -175,16 +175,23 @@
     <resources>
       <resource>
         <directory>${basedir}/src/conf</directory>
-        <targetPath>org/codehaus/axis</targetPath>
+        <targetPath>org/codehaus/ivory</targetPath>
         <includes>
           <include>**/*.wsdd</include>
         </includes>
       </resource>
       <resource>
         <directory>${basedir}/src/conf</directory>
-        <targetPath>org/codehaus/axis/plexus</targetPath>
+        <targetPath>org/codehaus/ivory/plexus</targetPath>
         <includes>
           <include>**/web.xml</include>
+        </includes>
+      </resource>
+      <resource>
+        <directory>${basedir}/src/conf</directory>
+        <targetPath>org/codehaus/ivory</targetPath>
+        <includes>
+          <include>**/*.xinfo</include>
         </includes>
       </resource>
     </resources>

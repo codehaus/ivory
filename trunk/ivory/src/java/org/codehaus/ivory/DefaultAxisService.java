@@ -50,7 +50,7 @@ public class DefaultAxisService
     protected static final String SERVER_CONFIG_KEY = "server-config";
     
     protected static final String DEFAULT_SERVER_CONFIG = 
-    	"/org/codehaus/axis/server-config.wsdd";
+    	"/org/codehaus/ivory/server-config.wsdd";
     
     private SimpleProvider provider;
     

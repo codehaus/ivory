@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+
+<blockinfo>
+
+    <block>
+        <version>1.0-alpha-5</version>
+    </block>
+
+    <services>
+        <service name="org.codehaus.ivory.DefaultAxisService"
+                 version="1.0-alpha-5" />
+    </services>
+
+    <dependencies>
+    </dependencies>
+
+</blockinfo>
