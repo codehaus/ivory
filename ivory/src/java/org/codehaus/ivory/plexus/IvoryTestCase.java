@@ -122,7 +122,7 @@ public class IvoryTestCase extends PlexusTestCase
                 "/org/codehaus/ivory/plexus/web.xml");
     
         sr = new ServletRunner(is);
-    
+        
         ServletUnitClient client = newClient();
     
         // There must be a better way to do this.
