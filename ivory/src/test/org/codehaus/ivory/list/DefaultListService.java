@@ -3,6 +3,9 @@ package org.codehaus.ivory.list;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.codehaus.ivory.attributes.NonWebMethod;
+import org.codehaus.ivory.attributes.ParameterType;
+
 /**
  * @author <a href="mailto:dan@envoisolutions.com">Dan Diephouse</a>
  * @since May 4, 2003
@@ -10,9 +13,9 @@ import java.util.List;
 public class DefaultListService
 	implements ListService
 {
-    /**
-     * @see org.codehaus.ivory.axis.list.ListService#getDevelopers()
-     */
+	private NonWebMethod nwm;
+    private ParameterType pt;
+    
     public List getDevelopers()
     {
         List list = new ArrayList();
@@ -22,9 +25,6 @@ public class DefaultListService
         return list;
     }
 
-    /**
-     * @see org.codehaus.ivory.axis.list.ListService#secretMethod()
-     */
     public void secretMethod()
     {
     }

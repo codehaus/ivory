@@ -28,7 +28,7 @@
       </p>
       <subsection name="WSDD Configuration">
       <p>
-        To use the Avalon provider, just register your service like so:
+        To use the Avalon provider, just register your service in your WSDD:
       </p>
       <p>
 <source><![CDATA[
@@ -43,6 +43,10 @@
   </service>
 </deployment>
 ]]></source>
+      </p>
+      <p>
+        Don't forget to specify your WSDD file in the Ivory component 
+        <a href="./dynamic.html#Configuration Method">configuration.</a>
       </p>
       </subsection>
     </section>

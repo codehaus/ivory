@@ -16,7 +16,7 @@
         <p>
 <source><![CDATA[
 <configuration 
-  	server-config="src/test/org/codehaus/plexus/axis/server-config.wsdd">
+  	server-config="file://src/test/org/codehaus/plexus/axis/server-config.wsdd">
   <services>
   	<avalonService role="com.company.app.YourComponent" name="YourComponent"/>
   	<classService class="com.company.app.YourObject" name="YourObject"/>
@@ -27,7 +27,9 @@
         <p>
           where an &lt;avalonService&gt; is loaded through the Avalon ServiceManager
           and a &lt;classService&gt; is loaded through the ClassLoader.  The "name"
-          attribute specifies the name of the exposed SOAP service.
+          attribute specifies the name of the exposed SOAP service.  The "server-config"
+          attribute is a URL specifying where the WSDD file is located.  If none is specified,
+          the Ivory default WSDD is used.
         </p>
         <p>
           After that you will need to configure your view medium, most likely

@@ -38,6 +38,7 @@ public class IvoryServiceDesc
             if ( !isValidOperation( operation ) ||
                  hideOperation( operation ) )
             {
+                log.debug( "Removing method " + operation.getName() );
                 itr.remove();
             }
         }
@@ -53,7 +54,7 @@ public class IvoryServiceDesc
     {
         Method method = operation.getMethod();
         
-        return Attributes.hasAttribute( method, NonWebMethod.class );
+        return Attributes.hasAttributeType( method, NonWebMethod.class );
     }
 
     protected void customizeOperation( OperationDesc operation )
@@ -69,7 +70,7 @@ public class IvoryServiceDesc
     }
 
     protected void customizeParameter( OperationDesc operation, 
-                                     ParameterDesc parameter )
+                                       ParameterDesc parameter )
     {
         Method method = operation.getMethod();
         
