@@ -89,7 +89,7 @@ public class MetaBeanUtils extends BeanUtils
                                 .getBeanInfo(secJavaType, AxisFault.class)
                                 .getPropertyDescriptors();
                     }
-                    else if (Throwable.class.isAssignableFrom(secJavaType))
+                    else if (Throwable.class != secJavaType && Throwable.class.isAssignableFrom(secJavaType))
                     {
                         // Don't include Throwable data
                         result =

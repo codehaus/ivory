@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 
+<!DOCTYPE web-app
+    PUBLIC "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+    "http://java.sun.com/dtd/web-app_2_3.dtd">
+    
 <web-app>
 
   <servlet>
@@ -8,6 +12,7 @@
     <servlet-class>
         org.codehaus.ivory.plexus.PlexusAxisServlet
     </servlet-class>
+    <load-on-start>1</load-on-start>
   </servlet>
 
   <servlet>
@@ -16,7 +21,6 @@
     <servlet-class>
         org.codehaus.ivory.plexus.PlexusAdminServlet
     </servlet-class>
-    <load-on-startup>1</load-on-startup>
   </servlet>
 
   <servlet-mapping>

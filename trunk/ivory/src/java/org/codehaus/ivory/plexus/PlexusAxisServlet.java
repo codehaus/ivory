@@ -11,6 +11,7 @@ import org.apache.avalon.framework.service.ServiceManager;
 import org.apache.axis.AxisEngine;
 import org.apache.axis.AxisFault;
 import org.apache.axis.ConfigurationException;
+import org.apache.axis.MessageContext;
 import org.apache.axis.WSDDEngineConfiguration;
 import org.apache.axis.configuration.SimpleProvider;
 import org.apache.axis.handlers.soap.SOAPService;
@@ -18,6 +19,9 @@ import org.apache.axis.server.AxisServer;
 import org.apache.axis.transport.http.AxisServlet;
 import org.apache.axis.utils.Messages;
 import org.codehaus.ivory.AxisService;
+import org.codehaus.ivory.DefaultAxisService;
+import org.codehaus.plexus.PlexusContainer;
+import org.codehaus.plexus.personality.avalon.AvalonServiceManager;
 import org.codehaus.plexus.servlet.PlexusServletUtils;
 
 /**
@@ -66,10 +70,10 @@ public class PlexusAxisServlet
 	 * 
 	 * @return ServiceBroker
 	 */
-	public ServiceManager getServiceManager()
-	{
-        return PlexusServletUtils.getServiceManager( getServletContext() );
-	}
+    public ServiceManager getServiceManager()
+    {
+        return DefaultAxisService.getServiceManager();
+    }
     
 	public void destroy()
 	{
@@ -87,56 +91,56 @@ public class PlexusAxisServlet
      * @param writer
      * @throws AxisFault
      */
-    protected void processListRequest( HttpServletResponse response, 
-                                       PrintWriter writer )
-        throws AxisFault 
-    {
-        AxisEngine engine = getEngine();
-
-        boolean enableList = true;
-        
-        if (enableList) {
-            if ( engine.getConfig() instanceof WSDDEngineConfiguration )
-            {
-                super.processListRequest( response, writer );
-            }
-            else if ( engine.getConfig() instanceof SimpleProvider )
-            {
-                SimpleProvider config = ( SimpleProvider ) engine.getConfig();
-                
-                Iterator itr;
-                try
-                {
-                    itr = config.getDeployedServices();
-                }
-                catch (ConfigurationException e)
-                {
-                    throw new AxisFault( "Configuration error.", e );
-                }
-                
-                response.setContentType("text/html");
-                writer.println("<h2>Services</h2>");
-                for ( SOAPService service = (SOAPService) itr.next();
-                    itr.hasNext(); )
-                {
-                    writer.println("<p>" +
-                                   service.getName() +
-                                   "</p>");
-                }
-            }
-        } 
-        else 
-        {
-            // list not enable, return error
-            //error code is, what, 401
-            response.setStatus(HttpURLConnection.HTTP_FORBIDDEN);
-            response.setContentType("text/html");
-            writer.println("<h2>" +
-                           Messages.getMessage("error00") +
-                           "</h2>");
-            writer.println("<p><i>?list</i> " +
-                           Messages.getMessage("disabled00") +
-                           "</p>");
-        }
-    }
+//    protected void processListRequest( HttpServletResponse response, 
+//                                       PrintWriter writer )
+//        throws AxisFault 
+//    {
+//        AxisEngine engine = getEngine();
+//
+//        boolean enableList = true;
+//        
+//        if (enableList) {
+//            if ( engine.getConfig() instanceof WSDDEngineConfiguration )
+//            {
+//                super.processListRequest( response, writer );
+//            }
+//            else if ( engine.getConfig() instanceof SimpleProvider )
+//            {
+//                SimpleProvider config = ( SimpleProvider ) engine.getConfig();
+//                
+//                Iterator itr;
+//                try
+//                {
+//                    itr = config.getDeployedServices();
+//                }
+//                catch (ConfigurationException e)
+//                {
+//                    throw new AxisFault( "Configuration error.", e );
+//                }
+//                
+//                response.setContentType("text/html");
+//                writer.println("<h2>Services</h2>");
+//                for ( SOAPService service = (SOAPService) itr.next();
+//                    itr.hasNext(); )
+//                {
+//                    writer.println("<p>" +
+//                                   service.getName() +
+//                                   "</p>");
+//                }
+//            }
+//        } 
+//        else 
+//        {
+//            // list not enable, return error
+//            //error code is, what, 401
+//            response.setStatus(HttpURLConnection.HTTP_FORBIDDEN);
+//            response.setContentType("text/html");
+//            writer.println("<h2>" +
+//                           Messages.getMessage("error00") +
+//                           "</h2>");
+//            writer.println("<p><i>?list</i> " +
+//                           Messages.getMessage("disabled00") +
+//                           "</p>");
+//        }
+//    }
 }

@@ -64,7 +64,7 @@ import org.apache.axis.deployment.wsdd.WSDDService;
  * WSDD Avalon provider.
  *
  * @author <a href="mailto:crafterm@apache.org">Marcus Crafter</a>
- * @revision CVS $Id: WSDDJavaAvalonProvider.java,v 1.1 2003-07-02 21:29:30 dandiep Exp $
+ * @revision CVS $Id: WSDDJavaAvalonProvider.java,v 1.2 2004-06-23 00:09:20 dandiep Exp $
  */
 public class WSDDJavaAvalonProvider extends WSDDProvider
 {
@@ -79,7 +79,6 @@ public class WSDDJavaAvalonProvider extends WSDDProvider
     public Handler newProviderInstance(WSDDService service, EngineConfiguration registry)
         throws Exception
     {
-        // REVISIT: could retrieve the ComponentManager from the registry ?
         return new AvalonProvider();
     }
 

@@ -6,6 +6,9 @@ import org.apache.axis.AxisFault;
 import org.apache.axis.server.AxisServer;
 import org.apache.axis.transport.http.AdminServlet;
 import org.codehaus.ivory.AxisService;
+import org.codehaus.ivory.DefaultAxisService;
+import org.codehaus.plexus.PlexusContainer;
+import org.codehaus.plexus.personality.avalon.AvalonServiceManager;
 import org.codehaus.plexus.servlet.PlexusServletUtils;
 
 /**
@@ -56,7 +59,7 @@ public class PlexusAdminServlet
      */
     public ServiceManager getServiceManager()
     {
-        return PlexusServletUtils.getServiceManager( getServletContext() );
+        return DefaultAxisService.getServiceManager();
     }
     
     public void destroy()

@@ -7,7 +7,7 @@ import java.util.List;
 
 import org.apache.axis.description.OperationDesc;
 import org.apache.axis.description.ParameterDesc;
-import org.apache.axis.description.ServiceDesc;
+import org.apache.axis.description.JavaServiceDesc;
 import org.apache.commons.attributes.Attributes;
 import org.codehaus.ivory.attributes.NonWebMethod;
 import org.codehaus.ivory.attributes.ParameterType;
@@ -19,7 +19,7 @@ import org.codehaus.ivory.attributes.ParameterType;
  * @since May 5, 2003
  */
 public class IvoryServiceDesc
-    extends ServiceDesc
+    extends JavaServiceDesc
 {
     private boolean loadingServiceDesc = false;
     
