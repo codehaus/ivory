@@ -9,7 +9,7 @@
   <organization>
     <name>Codehaus</name>
     <url>http://www.codehaus.org/</url>
-    <logo>http://images.werken.com/codehaus.gif</logo>
+    <logo>http://images.codehaus.org/codehaus.gif</logo>
   </organization>
   
   <description>
@@ -17,13 +17,12 @@
   </description>
   
   <url>http://ivory.codehaus.org/</url>
-  <cvsWebUrl>http://ivory.cvs.codehaus.org/</cvsWebUrl>
   <siteAddress>ivory.codehaus.org</siteAddress>
   <siteDirectory>/www/ivory.codehaus.org</siteDirectory>
   
   <repository>
     <connection>scm:cvs:pserver:anonymous@cvs.codehaus.org:/cvsroot/ivory:ivory</connection>
-    <url></url>
+    <url>http://ivory.cvs.codehaus.org/</url>
   </repository>
 
   <versions/>
@@ -32,8 +31,8 @@
   <mailingLists>
     <mailingList>
       <name>Ivory Developer List</name>
-      <subscribe>http://lists.werken.com/mailman/listinfo/ivory-dev</subscribe>
-      <unsubscribe>http://lists.werken.com/mailman/listinfo/ivorys-dev</unsubscribe>
+      <subscribe>http://lists.codehaus.org/mailman/listinfo/ivory-dev</subscribe>
+      <unsubscribe>http://lists.codehaus.org/mailman/listinfo/ivorys-dev</unsubscribe>
     </mailingList>
   </mailingLists>
   
