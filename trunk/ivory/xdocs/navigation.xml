@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<project
+  name="Ivory"
+  href="http://ivory.codehaus.org">
+
+  <body>
+    <links>
+      <item name="Blog"			           href="http://blogs.codehaus.org/projects/ivory"/>
+      <item name="Plexus"			       href="http://plexus.werken.com"/>
+    </links>
+    
+    <menu name="Ivory">
+      <item name="Main"   				       href="/index.html"/>
+      <item name="Dynamic Services"      href="/dynamic.html"/>
+      <item name="Metadata"              href="/metadata.html"/>
+      <item name="WSDD Configuration"    href="/wsdd.html"/>
+      <item name="Developer's Guide"     href="/axis-how.html"/>
+    </menu>
+
+  </body>
+</project>

@@ -1,0 +1,92 @@
+<?xml version="1.0"?>
+<document>
+
+  <properties>
+    <title>How it works</title>
+    <author email="dan@envoisolutions.com">Dan Diephouse</author>
+  </properties>
+
+  <body>
+    <section name="How it works">
+      <p>
+        In a normal HTTP type Axis situation, the AxisServlet is soley
+        responsible for taking care of loading Axis.  It uses the a 
+        WSDD file to configure the AxisEngine and provides an interface
+        to that AxisEngine through HTTP requests.
+      </p>
+      <p>
+        However, in the AxisService we embed the AxisEngine (aka, the
+        AxisServer) into an Avalon component.  By doing so we are able
+        to do two things.  First, we are able to provide the AxisServer to the
+        servlets as well as avalon components.  There are classes in the 
+        org.apache.ivory.axis.servlet package which extend the Axis servlets 
+        so we can look up the AxisService and provide the servlets
+        with the AxisEngine.  Second, we are able to use the AxisEngine in our service
+        to dynamically configure components as SOAP services.  This is the real
+        meat of the Axis component.
+      </p>
+      <subsection name="Internal Axis Configuration">
+        <p>
+          Axis's primary mode of configuration resolves around WSDD
+          deployment descriptors.  Normally, the AdminServlet is the primary 
+          point of service deployment and undeployment using WSDD.  The WSDD
+          configuration model is somewhat intertwined all throughout Axis.  While 
+          Axis starts to have its own internal configuration model, it fails in
+          some respects.
+        </p>
+        <p>
+          The good news is that it is still workable to have a configuration
+          model other than WSDD.  If this wasn't possible you would have to 
+          deploy all your services through WSDD and wouldn't be able to
+          dynamically expose them. 
+        </p>
+        <p>
+          The AxisService uses the class
+          org.apache.axis.configuration.SimpleProvider as its configuration model
+          for the AxisServer.  The SimpleProvider allows us to deploy
+          services on the fly easily without resorting to WSDD.
+        </p>
+      </subsection>
+      <subsection name="Creating the service">
+        <p>
+          The SOAPService class is fundamental to creating services 
+          dynamically with Axis.  The javadocs have something good to say
+          on this topic: <i>A SOAPService is a Handler which encapsulates a SOAP
+          invocation.  It has an request chain, an response chain, and a pivot-point,
+          and handles the SOAP semantics when invoke()d.</i>
+          This means the SOAPService is the central starting point for any
+          service.  It handles what happens when your service is invoked.
+          However, a lot of the magic happens in the providers, detailed
+          in the next section.
+        </p>
+      </subsection>
+      <subsection name="Axis Providers">
+        <p>
+          Axis contains several default service handlers which encapsulate services.
+          They are usually called "Providers."  These providers are responsible
+          for the actual instantiation of your java classes that the soap xml maps to
+          (Serialization is handled by the TypeMapping and other 
+          org.apache.axis.encoding.* classes).
+        </p>
+        <p>
+          By setting the appropriate options on the SOAPService (which is the
+          encapsulation of a SOAP invocation) we are able to create new
+          services relatively easily (see DefaultAxisService). However, if we
+          are exposing Avalon services we need to use a different provider other
+          than the JavaProvider bundled with Axis.  The AvalonProvider extends
+          JavaProvider to do this.  Instead of creating new objects, it just
+          finds the object in the service manager.
+        </p>
+      </subsection>
+      <subsection name="Serialization">
+        <p>
+          Currently, the AxisService relies solely on Bean(De)serializers to
+          do the mapping from XML to the java class or component.  Hopefully
+          this will be made more flexible in the future.  In the meantime,
+          your SOAP Services must be in the java bean format and you can't
+          hide anything from Axis.  All methods are exposed.
+        </p>
+      </subsection>
+    </section>
+ </body>
+</document>

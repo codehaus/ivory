@@ -1,0 +1,22 @@
+<plexus>
+  <components>
+
+    <component>
+      <role>org.codehaus.ivory.AxisService</role>
+      <implementation>org.codehaus.ivory.DefaultAxisService</implementation>
+      <configuration>
+      	<services>
+      	  <avalonService role="org.codehaus.ivory.SparePartInfo"
+      	                 name="SparePartInfo"/>
+      	</services>
+      </configuration>            
+    </component>
+
+    <component>
+      <role>org.codehaus.ivory.SparePartInfo</role>
+      <implementation>org.codehaus.ivory.DefaultSparePartInfo</implementation>
+      <configuration/>
+    </component>
+
+  </components>
+</plexus>
