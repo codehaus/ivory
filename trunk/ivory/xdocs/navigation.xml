@@ -6,12 +6,13 @@
   <body>
     <links>
       <item name="Blog"			           href="http://blogs.codehaus.org/projects/ivory"/>
-      <item name="Plexus"			       href="http://plexus.werken.com"/>
+      <item name="Plexus"			       href="http://plexus.codehaus.org"/>
     </links>
     
     <menu name="Ivory">
       <item name="Main"   				       href="/index.html"/>
       <item name="Bugs"                  href="/bugs.html"/>
+      <item name="Download"              href="http://dist.codehaus.org/ivory"/>
       <item name="Dynamic Services"      href="/dynamic.html"/>
       <item name="Metadata"              href="/metadata.html"/>
       <item name="WSDD Configuration"    href="/wsdd.html"/>

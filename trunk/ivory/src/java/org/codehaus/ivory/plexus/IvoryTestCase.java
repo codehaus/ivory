@@ -67,10 +67,10 @@ import org.apache.axis.server.AxisServer;
 import org.apache.axis.soap.SOAPConstants;
 import org.apache.axis.transport.local.LocalTransport;
 import org.apache.axis.utils.XMLUtils;
-import org.codehaus.plexus.PlexusTestCase;
-import org.codehaus.plexus.lifecycle.avalon.AvalonServiceManager;
-import org.codehaus.plexus.servlet.PlexusServlet;
 import org.codehaus.ivory.AxisService;
+import org.codehaus.ivory.DefaultAxisService;
+import org.codehaus.plexus.PlexusTestCase;
+import org.codehaus.plexus.servlet.PlexusServlet;
 import org.w3c.dom.Document;
 import org.xml.sax.SAXException;
 
@@ -113,9 +113,9 @@ public class IvoryTestCase extends PlexusTestCase
         setVerbose( Boolean.getBoolean( VERBOSE_KEY ) );
     
         HttpUnitOptions.setExceptionsThrownOnErrorStatus(true);
-    
-        manager =
-            new AvalonServiceManager(getContainer().getComponentRepository());
+
+        DefaultAxisService axisService = (DefaultAxisService) lookup( AxisService.ROLE );
+        manager = (ServiceManager) axisService.getServiceManager();
     
         InputStream is =
             getClass().getResourceAsStream(
@@ -417,7 +417,7 @@ public class IvoryTestCase extends PlexusTestCase
     
     public String getWSDL( String serviceName ) throws Exception
     {
-    	AxisService service = ( AxisService ) getComponent( AxisService.ROLE );
+    	AxisService service = ( AxisService ) lookup( AxisService.ROLE );
     	AxisServer server = service.getAxisServer();
     
     	LocalTransport transport = new LocalTransport(server);
