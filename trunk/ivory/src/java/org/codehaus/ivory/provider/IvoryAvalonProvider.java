@@ -111,15 +111,22 @@ public class IvoryAvalonProvider
 
         int i;
 
+        ClassLoader cl = Thread.currentThread().getContextClassLoader();
+        String className = role;
+        
         if ((i = role.indexOf('/')) != -1)
         {
-            return super.getServiceClass( role.substring(0, i), service, msgContext );
+            className = role.substring(0, i);
         }
-        else
+        
+        try
         {
-            return super.getServiceClass( role, service, msgContext );
+            return cl.loadClass( className );
         }
-
+        catch (ClassNotFoundException e)
+        {
+            throw new AxisFault( "Couldn't find class " + className, e );
+        }
     }
 
     /**

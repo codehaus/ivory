@@ -207,8 +207,7 @@ public class MetaBeanUtils extends BeanUtils
         }
 
         return BeanUtils.processPropertyDescriptors(
-            (PropertyDescriptor[]) filteredPds.toArray(
-                new PropertyDescriptor[0]),
+            (PropertyDescriptor[]) filteredPds.toArray( new PropertyDescriptor[0] ),
             cls,
             typeDesc);
     }

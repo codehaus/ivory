@@ -121,7 +121,7 @@ import org.apache.axis.providers.java.RPCProvider;
  * </p>
  *
  * @author <a href="mailto:crafterm@apache.org">Marcus Crafter</a>
- * @revision CVS $Id: AvalonProvider.java,v 1.1 2003-07-02 21:29:30 dandiep Exp $
+ * @revision CVS $Id: AvalonProvider.java,v 1.2 2004-08-02 14:14:08 dandiep Exp $
  */
 public class AvalonProvider
     extends RPCProvider
@@ -215,17 +215,24 @@ public class AvalonProvider
         // actually the class name, potentially with a variant following
         // the class name with a '/' separator
 
+        ClassLoader cl = Thread.currentThread().getContextClassLoader();
+        String className = role;
+        
         int i;
-
+        
         if ((i = role.indexOf('/')) != -1)
         {
-            return super.getServiceClass( role.substring(0, i), service, msgContext );
+            className = role.substring(0, i);
         }
-        else
+        
+        try
         {
-            return super.getServiceClass( role, service, msgContext );
+            return cl.loadClass( className );
         }
-
+        catch (ClassNotFoundException e)
+        {
+            throw new AxisFault( "Couldn't find class " + className, e );
+        }
     }
 
     /**
