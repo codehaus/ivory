@@ -21,6 +21,7 @@
 		  <li>Expose Avalon services as web services via WSDD</li>
 		  <li>Metadata support</li>
 		  <li>Runs Axis as embedded Avalon component</li>
+		  <li>Support for Axis 1.2 Beta 2</li>
 		</ul>
 	  </p>
     </section>
