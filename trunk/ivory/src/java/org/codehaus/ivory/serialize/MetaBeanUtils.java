@@ -14,11 +14,10 @@ import org.apache.axis.description.FieldDesc;
 import org.apache.axis.description.TypeDesc;
 import org.apache.axis.utils.BeanPropertyDescriptor;
 import org.apache.axis.utils.BeanUtils;
-import org.apache.commons.attributes.AttributeFinder;
 import org.apache.commons.attributes.Attributes;
-import org.apache.commons.attributes.AttributesException;
 import org.apache.commons.logging.Log;
 import org.apache.axis.components.logger.LogFactory;
+import org.codehaus.ivory.attributes.NonWebMethod;
 
 /**
  * 
@@ -191,27 +190,19 @@ public class MetaBeanUtils extends BeanUtils
         TypeDesc typeDesc)
     {
         ArrayList filteredPds = new ArrayList();
-        AttributeFinder finder = Attributes.getAttributeFinder();
 
         for (int i = 0; i < rawPd.length; i++)
         {
             Method m = rawPd[i].getReadMethod();
-            try
-            {
-                if (finder.getAttribute(m, "axis.hidemethod") == null)
-                {
-                    filteredPds.add(rawPd[i]);
-                    System.out.println("[ivory] added method " + m.getName());
-                }
-                else
-                {
-                    System.out.println("[ivory] skipped method " + m.getName());
-                }
-            }
-            catch ( AttributesException e )
+
+            if (!Attributes.hasAttributeType(m, NonWebMethod.class))
             {
                 filteredPds.add(rawPd[i]);
-                System.out.println("[ivory] added method2 " + m.getName());
+                System.out.println("[ivory] added method " + m.getName());
+            }
+            else
+            {
+                System.out.println("[ivory] skipped method " + m.getName());
             }
         }
 

@@ -67,9 +67,10 @@
     </dependency>
     
 	<dependency>
-      <id>commons-attributes</id>
-      <version>20030728.175909</version>
-      <url>http://jakarta.apache.org/commons/sandbox/attributes</url>
+	    <groupId>commons-attributes</groupId>
+	    <artifactId>commons-attributes-api</artifactId>
+	    <version>SNAPSHOT</version>
+        <url>http://jakarta.apache.org/commons/sandbox/attributes</url>
     </dependency>
     
 	<dependency>
