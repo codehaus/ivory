@@ -18,7 +18,7 @@
     
     <shortDescription>Integrates Axis and Avalon.</shortDescription>
     <url>http://ivory.codehaus.org/</url>
-    <siteAddress>ivory.codehaus.org</siteAddress>
+	<siteAddress>ivory.codehaus.org</siteAddress>
     <siteDirectory>/home/projects/ivory/public_html</siteDirectory>
     <distributionSite>ivory.codehaus.org</distributionSite>
     <distributionDirectory>/dist</distributionDirectory>
@@ -57,159 +57,139 @@
         </developer>
     </developers>
 
-    <dependencies>
-        <dependency>
-            <groupId>avalon-framework</groupId>
-            <artifactId>avalon-framework</artifactId>
-            <version>4.1.4</version>
-            <properties/>
-        </dependency>
-
-        <dependency>
-            <groupId>axis</groupId>
-            <artifactId>axis</artifactId>
-            <version>1.2-beta-1</version>
-            <url>http://ws.apache.org/axis/</url>
-            <properties/>
-        </dependency>
-
-        <dependency>
-            <groupId>axis</groupId>
-            <artifactId>axis-jaxrpc</artifactId>
-            <version>1.2-beta-1</version>
-            <url>http://xml.apache.org/axis/</url>
-            <properties/>
-        </dependency>
-
-        <dependency>
-            <groupId>axis</groupId>
-            <artifactId>axis-saaj</artifactId>
-            <version>1.2-beta-1</version>
-            <url>http://xml.apache.org/axis/</url>
-            <properties/>
-        </dependency>
-
-        <dependency>
-            <groupId>commons-attributes</groupId>
-            <artifactId>commons-attributes-api</artifactId>
-            <version>SNAPSHOT</version>
-            <url>http://jakarta.apache.org/commons/sandbox/attributes</url>
-            <properties/>
-        </dependency>
-
-        <dependency>
-            <groupId>commons-discovery</groupId>
-            <artifactId>commons-discovery</artifactId>
-            <version>0.2</version>
-            <url>http://jakarta.apache.org/commons/sandbox/discovery.html</url>
-            <properties/>
-        </dependency>
-
-        <dependency>
-            <groupId>commons-logging</groupId>
-            <artifactId>commons-logging</artifactId>
-            <version>1.0.2</version>
-            <url>http://jakarta.apache.org/commons/</url>
-            <properties/>
-        </dependency>
-            
-	<dependency>
-      <id>dom4j</id>
-      <version>1.4</version>
-    </dependency>
-
-        <dependency>
-            <groupId>httpunit</groupId>
-            <artifactId>httpunit</artifactId>
-            <version>1.5.4</version>
-            <properties/>
-        </dependency>
-
-        <dependency>
-            <groupId>plexus</groupId>
-            <artifactId>plexus</artifactId>
-            <version>0.15</version>
-            <properties/>
-        </dependency>
-
-        <dependency>
-            <groupId>plexus</groupId>
-            <artifactId>plexus-servlet</artifactId>
-            <version>1.0-beta-2-SNAPSHOT</version>
-            <properties/>
-        </dependency>
-
-        <dependency>
-            <groupId>plexus</groupId>
-            <artifactId>plexus-avalon-personality</artifactId>
-            <version>0.12</version>
-            <properties/>
-        </dependency>
-
-        <dependency>
-            <groupId>xstream</groupId>
-            <artifactId>xstream</artifactId>
-            <version>1.0-SNAPSHOT</version>
-            <properties/>
-        </dependency>
-
-        <dependency>
-            <groupId>qdox</groupId>
-            <artifactId>qdox</artifactId>
-            <version>1.1</version>
-            <url>http://jakarta.apache.org/commons/sandbox/attributes</url>
-            <properties/>
-        </dependency>
-
-        <dependency>
-            <groupId>servletapi</groupId>
-            <artifactId>servletapi</artifactId>
-            <version>2.3</version>
-            <properties/>
-        </dependency>
-
-        <dependency>
-            <groupId>wsdl4j</groupId>
-            <artifactId>wsdl4j</artifactId>
-            <version>1.0</version>
-            <url>http://www-124.ibm.com/developerworks/projects/wsdl4j/</url>
-            <properties/>
-        </dependency>
-
-        <dependency>
-            <groupId>classworlds</groupId>
-            <artifactId>classworlds</artifactId>
-            <version>1.1-SNAPSHOT</version>
-            <properties/>
-        </dependency>
-
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>3.8.1</version>
-            <properties/>
-        </dependency>
-
-        <dependency>
-            <groupId>xpp3</groupId>
-            <artifactId>xpp3</artifactId>
-            <version>1.1.3.3</version>
-            <properties/>
-        </dependency>
-
-    <dependency>
-      <groupId>xerces</groupId>
-      <artifactId>xercesImpl</artifactId>
-      <version>2.3.0</version>
-    </dependency>
-    
-    <dependency>
-      <groupId>xerces</groupId>
-      <artifactId>xmlParserAPIs</artifactId>
-      <version>2.2.1</version>
-    </dependency>
-
-    </dependencies>
+	<dependencies>
+		<dependency>
+			<groupId>avalon-framework</groupId>
+			<artifactId>avalon-framework</artifactId>
+			<version>4.1.4</version>
+			<properties/>
+		</dependency>
+		<dependency>
+			<groupId>axis</groupId>
+			<artifactId>axis</artifactId>
+			<version>1.2-beta-1</version>
+			<url>http://ws.apache.org/axis/</url>
+			<properties/>
+		</dependency>
+		<dependency>
+			<groupId>axis</groupId>
+			<artifactId>axis-jaxrpc</artifactId>
+			<version>1.2-beta-1</version>
+			<url>http://xml.apache.org/axis/</url>
+			<properties/>
+		</dependency>
+		<dependency>
+			<groupId>axis</groupId>
+			<artifactId>axis-saaj</artifactId>
+			<version>1.2-beta-1</version>
+			<url>http://xml.apache.org/axis/</url>
+			<properties/>
+		</dependency>
+		<dependency>
+			<groupId>commons-attributes</groupId>
+			<artifactId>commons-attributes-api</artifactId>
+			<version>SNAPSHOT</version>
+			<url>http://jakarta.apache.org/commons/sandbox/attributes</url>
+			<properties/>
+		</dependency>
+		<dependency>
+			<groupId>commons-discovery</groupId>
+			<artifactId>commons-discovery</artifactId>
+			<version>0.2</version>
+			<url>http://jakarta.apache.org/commons/sandbox/discovery.html</url>
+			<properties/>
+		</dependency>
+		<dependency>
+			<groupId>commons-logging</groupId>
+			<artifactId>commons-logging</artifactId>
+			<version>1.0.2</version>
+			<url>http://jakarta.apache.org/commons/</url>
+			<properties/>
+		</dependency>
+		<dependency>
+			<id>dom4j</id>
+			<version>1.4</version>
+		</dependency>
+		<dependency>
+			<groupId>httpunit</groupId>
+			<artifactId>httpunit</artifactId>
+			<version>1.5.4</version>
+			<properties/>
+		</dependency>
+		<dependency>
+			<groupId>plexus</groupId>
+			<artifactId>plexus</artifactId>
+			<version>0.15</version>
+			<properties/>
+		</dependency>
+		<dependency>
+			<groupId>plexus</groupId>
+			<artifactId>plexus-servlet</artifactId>
+			<version>1.0-beta-2-SNAPSHOT</version>
+			<properties/>
+		</dependency>
+		<dependency>
+			<groupId>plexus</groupId>
+			<artifactId>plexus-avalon-personality</artifactId>
+			<version>0.12</version>
+			<properties/>
+		</dependency>
+		<dependency>
+			<groupId>xstream</groupId>
+			<artifactId>xstream</artifactId>
+			<version>1.0-SNAPSHOT</version>
+			<properties/>
+		</dependency>
+		<dependency>
+			<groupId>qdox</groupId>
+			<artifactId>qdox</artifactId>
+			<version>1.1</version>
+			<url>http://jakarta.apache.org/commons/sandbox/attributes</url>
+			<properties/>
+		</dependency>
+		<dependency>
+			<groupId>servletapi</groupId>
+			<artifactId>servletapi</artifactId>
+			<version>2.3</version>
+			<properties/>
+		</dependency>
+		<dependency>
+			<groupId>wsdl4j</groupId>
+			<artifactId>wsdl4j</artifactId>
+			<version>1.0</version>
+			<url>http://www-124.ibm.com/developerworks/projects/wsdl4j/</url>
+			<properties/>
+		</dependency>
+		<dependency>
+			<groupId>classworlds</groupId>
+			<artifactId>classworlds</artifactId>
+			<version>1.1-SNAPSHOT</version>
+			<properties/>
+		</dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>3.8.1</version>
+			<properties/>
+		</dependency>
+		<dependency>
+			<groupId>xpp3</groupId>
+			<artifactId>xpp3</artifactId>
+			<version>1.1.3.3</version>
+			<properties/>
+		</dependency>
+		<dependency>
+			<groupId>xerces</groupId>
+			<artifactId>xercesImpl</artifactId>
+			<version>2.3.0</version>
+		</dependency>
+		<dependency>
+			<groupId>xerces</groupId>
+			<artifactId>xmlParserAPIs</artifactId>
+			<version>2.2.1</version>
+		</dependency>
+	</dependencies>
+	
     <build>
         <sourceDirectory>${basedir}/src/java</sourceDirectory>
         <unitTestSourceDirectory>${basedir}/src/test</unitTestSourceDirectory>
@@ -259,5 +239,6 @@
             </resource>
         </resources>
     </build>
+	
     <properties/>
 </project>
