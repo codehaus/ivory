@@ -49,8 +49,7 @@ public class DefaultAxisService
     extends AbstractLogEnabled
     implements AxisService, Startable, Configurable, Initializable, Serviceable, Contextualizable
 {
-    /** We hold a static ServiceManager so the servlets can get at it. */
-    private static ServiceManager manager;
+    private  ServiceManager manager;
     
     public static final QName QNAME_AVALONRPC_PROVIDER =
         new QName(WSDDConstants.URI_WSDD_JAVA, "Avalon");
@@ -364,10 +363,10 @@ public class DefaultAxisService
      */
     public void service(ServiceManager manager) throws ServiceException
     {
-        DefaultAxisService.manager = manager;
+        this.manager = manager;
     }
     
-    public static ServiceManager getServiceManager()
+    public ServiceManager getServiceManager()
     {
         return manager;
     }

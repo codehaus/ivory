@@ -32,7 +32,12 @@
       <version>
         <id>1.0-beta-1</id>
         <name>1.0-beta-1</name>
-        <tag>1_0_BETA_1</tag>
+        <tag>IVORY_1_0_BETA_1</tag>
+      </version>
+	  <version>
+        <id>1.0-beta-2</id>
+        <name>1.0-beta-2</name>
+        <tag>IVORY_1_0_BETA_2</tag>
       </version>
     </versions>
 
@@ -67,21 +72,21 @@
 		<dependency>
 			<groupId>axis</groupId>
 			<artifactId>axis</artifactId>
-			<version>1.2-beta-1</version>
+			<version>1.2-beta-2</version>
 			<url>http://ws.apache.org/axis/</url>
 			<properties/>
 		</dependency>
 		<dependency>
 			<groupId>axis</groupId>
 			<artifactId>axis-jaxrpc</artifactId>
-			<version>1.2-beta-1</version>
+			<version>1.2-beta-2</version>
 			<url>http://xml.apache.org/axis/</url>
 			<properties/>
 		</dependency>
 		<dependency>
 			<groupId>axis</groupId>
 			<artifactId>axis-saaj</artifactId>
-			<version>1.2-beta-1</version>
+			<version>1.2-beta-2</version>
 			<url>http://xml.apache.org/axis/</url>
 			<properties/>
 		</dependency>

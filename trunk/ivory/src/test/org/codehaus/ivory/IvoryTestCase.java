@@ -6,12 +6,12 @@ import java.net.MalformedURLException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 import org.apache.avalon.framework.service.ServiceManager;
 import org.apache.axis.MessageContext;
 import org.apache.axis.server.AxisServer;
 import org.apache.axis.soap.SOAPConstants;
 import org.apache.axis.transport.local.LocalTransport;
-import org.codehaus.ivory.AxisService;
 import org.codehaus.plexus.PlexusTestCase;
 import org.dom4j.DocumentHelper;
 import org.dom4j.Node;
@@ -19,10 +19,12 @@ import org.dom4j.XPath;
 import org.dom4j.io.DOMReader;
 import org.w3c.dom.Document;
 import org.xml.sax.SAXException;
+
 import com.meterware.httpunit.HttpException;
 import com.meterware.httpunit.HttpUnitOptions;
 import com.meterware.httpunit.WebConversation;
 import com.meterware.httpunit.WebRequest;
+import com.meterware.httpunit.WebResponse;
 import com.meterware.servletunit.ServletRunner;
 import com.meterware.servletunit.ServletUnitClient;
 
@@ -58,16 +60,17 @@ public class IvoryTestCase
     {
         super.setUp();
         setVerbose( Boolean.getBoolean( VERBOSE_KEY ) );
+        PlexusTestServlet.Plexus = getContainer();
     
         HttpUnitOptions.setExceptionsThrownOnErrorStatus(true);
         
-        InputStream is =
-            getClass().getResourceAsStream( "/org/codehaus/ivory/plexus/web.xml");
+        InputStream is = getClass().getResourceAsStream( "/org/codehaus/ivory/web.xml");
     
         sr = new ServletRunner(is);
         
-        PlexusTestServlet.Plexus = getContainer();
-        sr.registerServlet("plexus", PlexusTestServlet.class.getName());
+        ServletUnitClient client = newClient();
+
+        WebResponse response = client.getResponse("http://localhost/servlet/PlexusTestServlet");
     }
     
     protected ServletUnitClient newClient() throws Exception

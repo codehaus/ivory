@@ -2,14 +2,14 @@ package org.codehaus.ivory.plexus;
 
 import javax.servlet.ServletContext;
 
-import org.apache.avalon.framework.service.ServiceException;
-import org.apache.avalon.framework.service.ServiceManager;
 import org.apache.axis.AxisFault;
 import org.apache.axis.AxisProperties;
 import org.apache.axis.server.AxisServer;
 import org.apache.axis.transport.http.AdminServlet;
 import org.codehaus.ivory.AxisService;
-import org.codehaus.ivory.DefaultAxisService;
+import org.codehaus.plexus.PlexusConstants;
+import org.codehaus.plexus.PlexusContainer;
+import org.codehaus.plexus.component.repository.exception.ComponentLookupException;
 
 /**
  * An implementation of the Axis AdminServlet which retrieves the AxisEngine
@@ -21,7 +21,7 @@ import org.codehaus.ivory.DefaultAxisService;
 public class PlexusAdminServlet 
     extends AdminServlet
 {
-	ServiceManager manager;
+	PlexusContainer manager;
 	
 	AxisService axisService;
 	
@@ -37,13 +37,13 @@ public class PlexusAdminServlet
      */
     public AxisServer getEngine() throws AxisFault
     {
-        manager = getServiceManager();
+        manager = getPlexusContainer();
                 
         try
         {
             axisService = ( AxisService ) manager.lookup( AxisService.ROLE );
         }
-        catch (ServiceException e)
+        catch (ComponentLookupException e)
         {
             throw new AxisFault( "Could not find the AxisService.", e );
         }
@@ -52,22 +52,27 @@ public class PlexusAdminServlet
     }
     
     /**
-     * Retrieve the ServiceBroker from the ServletContext.  This presupposes
-     * that the installation is using Plexus.
+     * Retrieve the PlexusContainer from the ServletContext.
      * 
      * @return ServiceBroker
      */
-    public ServiceManager getServiceManager()
+    public PlexusContainer getPlexusContainer()
     {
-        return DefaultAxisService.getServiceManager();
+        return (PlexusContainer) getServletContext().getAttribute( PlexusConstants.PLEXUS_KEY );
     }
     
     public void destroy()
     {
     	super.destroy();
     	
-        if ( axisService != null )
-        	manager.release( axisService );
+        if ( axisService != null ) try
+		{
+			manager.release( axisService );
+		}
+		catch (Exception e)
+		{
+			log("Couldn't release AxisService.", e);
+		}
     }
     
     protected String getOption(ServletContext context,
