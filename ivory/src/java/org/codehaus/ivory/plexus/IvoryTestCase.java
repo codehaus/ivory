@@ -58,8 +58,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.StringWriter;
 import java.net.MalformedURLException;
-
-import javax.servlet.ServletContext;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import org.apache.avalon.framework.service.ServiceManager;
 import org.apache.axis.MessageContext;
@@ -68,8 +69,10 @@ import org.apache.axis.soap.SOAPConstants;
 import org.apache.axis.transport.local.LocalTransport;
 import org.apache.axis.utils.XMLUtils;
 import org.codehaus.ivory.AxisService;
-import org.codehaus.plexus.PlexusConstants;
 import org.codehaus.plexus.PlexusTestCase;
+import org.dom4j.DocumentHelper;
+import org.dom4j.Node;
+import org.dom4j.XPath;
 import org.w3c.dom.Document;
 import org.xml.sax.SAXException;
 
@@ -78,7 +81,6 @@ import com.meterware.httpunit.HttpUnitOptions;
 import com.meterware.httpunit.WebConversation;
 import com.meterware.httpunit.WebRequest;
 import com.meterware.httpunit.WebResponse;
-import com.meterware.servletunit.InvocationContext;
 import com.meterware.servletunit.ServletRunner;
 import com.meterware.servletunit.ServletUnitClient;
 
@@ -100,6 +102,9 @@ public class IvoryTestCase extends PlexusTestCase
     
     public final static String VERBOSE_KEY = 
     	"IvoryTestCase.verbose";
+
+    /** Namespaces for the XPath expressions. */
+    private Map namespaces = new HashMap();
     
     public IvoryTestCase(String name)
     {
@@ -455,5 +460,86 @@ public class IvoryTestCase extends PlexusTestCase
     		assertStringInBody( response, "<wsdl:input name=\"" + methods[i] + "Request\">" );
     		assertStringInBody( response, "<wsdl:output name=\"" + methods[i] + "Response\">" );
     	}
+    }
+    
+    /**
+     * Assert that the following XPath query selects one or more nodes.
+     * 
+     * @param xpath
+     * @throws Exception
+     */
+    public void assertValid( String xpath, Node node )
+        throws Exception
+    {
+        List nodes = createXPath( xpath ).selectNodes( node );
+        
+        if ( nodes.size() == 0 )
+        {
+            throw new Exception( "Failed to select any nodes for expression:.\n" +
+                                 xpath + "\n" +
+                                 node.asXML() );
+        }
+    }
+    
+    /**
+     * Assert that the following XPath query selects no nodes.
+     * 
+     * @param xpath
+     * @throws Exception
+     */
+    public void assertInvalid( String xpath, Node node )
+        throws Exception
+    {
+        List nodes = createXPath( xpath ).selectNodes( node );
+        
+        if ( nodes.size() > 0 )
+        {
+            throw new Exception( "Found multiple nodes for expression:\n" +
+                                 xpath + "\n" +
+                                 node.asXML() );
+        }
+    }
+
+    /**
+     * Asser that the text of the xpath node retrieved is equal to the
+     * value specified.
+     * 
+     * @param xpath
+     * @param value
+     * @param node
+     * @throws Exception
+     */
+    public void assertXPathEquals( String xpath, String value, Node node )
+        throws Exception
+    {
+        Node n = createXPath( xpath ).selectSingleNode( node );
+        
+        if ( n == null )
+            fail("Couldn't select a valid node.");
+        
+        String value2 = n.getText().trim();
+        assertEquals( value, value2 );
+    }
+
+    /**
+     * Create the specified XPath expression with the namespaces added
+     * via addNamespace().
+     */
+    protected XPath createXPath( String xpathString )
+    {
+        XPath xpath = DocumentHelper.createXPath( xpathString );
+        xpath.setNamespaceURIs(namespaces);
+        
+        return xpath;
+    }
+
+    /**
+     * Add a namespace that will be used for XPath expressions.
+     * @param ns Namespace name.
+     * @param uri The namespace uri.
+     */
+    public void addNamespace( String ns, String uri )
+    {
+        namespaces.put(ns, uri);
     }
 }

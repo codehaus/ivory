@@ -3,15 +3,13 @@ package org.codehaus.ivory.serialize;
 import java.lang.reflect.Modifier;
 import java.util.List;
 
-import org.apache.axis.wsdl.fromJava.Types;
 import javax.xml.namespace.QName;
 
 import org.apache.axis.description.FieldDesc;
 import org.apache.axis.description.TypeDesc;
 import org.apache.axis.encoding.ser.BeanSerializer;
 import org.apache.axis.utils.BeanPropertyDescriptor;
-import org.apache.axis.utils.BeanUtils;
-import org.apache.axis.utils.FieldPropertyDescriptor;
+import org.apache.axis.wsdl.fromJava.Types;
 import org.w3c.dom.Element;
 
 /**
@@ -64,6 +62,17 @@ public class MetadataSerializer extends BeanSerializer
      * @return a type element containing a schema simpleType/complexType
      * @see org.apache.axis.wsdl.fromJava.Types
      */
+    /**
+     * Return XML schema for the specified type, suitable for insertion into
+     * the &lt;types&gt; element of a WSDL document, or underneath an
+     * &lt;element&gt; or &lt;attribute&gt; declaration.
+     *
+     * @param javaType the Java Class we're writing out schema for
+     * @param types the Java2WSDL Types object which holds the context
+     *              for the WSDL being generated.
+     * @return a type element containing a schema simpleType/complexType
+     * @see org.apache.axis.wsdl.fromJava.Types
+     */
     public Element writeSchema(Class javaType, Types types) throws Exception {
 
         // ComplexType representation of bean class
@@ -95,7 +104,7 @@ public class MetadataSerializer extends BeanSerializer
             if (superTypeDesc != null) {
                 superPd = superTypeDesc.getPropertyDescriptors();
             } else {
-                superPd = BeanUtils.getPd(superClass, null);
+                superPd = MetaBeanUtils.getPd(superClass, null);
             }
         } else {
             e = complexType;
