@@ -1,6 +1,7 @@
 package org.codehaus.ivory;
 
-import org.codehaus.ivory.plexus.IvoryTestCase;
+
+import org.dom4j.Document;
 
 import com.meterware.httpunit.WebResponse;
 import com.meterware.servletunit.ServletUnitClient;
@@ -28,18 +29,12 @@ public class DefaultAxisServiceTest
     
 	public void testWSDLGeneration() throws Exception
 	{
-		//assertValidWSDL( "Version", "getVersion" );
-		//assertValidWSDL( "SparePartInfo", "getPartInfo" );
-	}
-    
-    public void testVersionMethod() throws Exception 
-    {
-		WebResponse response = newClient().getResponse("http://localhost/services/Version?method=getVersion");
+        addNamespace("wsdl", "http://schemas.xmlsoap.org/wsdl/");
         
-        String body = response.getText();
-		//assertIsXml( body );
-        assertTrue( body.indexOf( "<getVersionReturn") > 0 );
-    }
+        Document doc = getWSDL("Version");
+        
+        assertValid("/wsdl:definitions/wsdl:message[@name='getVersionResponse']", doc );
+	}
 
     public void testExposeService() throws Exception
     {

@@ -121,7 +121,7 @@
         <dependency>
             <groupId>httpunit</groupId>
             <artifactId>httpunit</artifactId>
-            <version>1.5.1</version>
+            <version>1.5.4</version>
             <properties/>
         </dependency>
 
@@ -242,10 +242,10 @@
                 <filtering>false</filtering>
             </resource>
             <resource>
-                <directory>${basedir}/src/conf</directory>
-                <targetPath>org/codehaus/ivory/plexus</targetPath>
+                <directory>${basedir}/src/java</directory>
+                <targetPath></targetPath>
                 <includes>
-                    <include>**/web.xml</include>
+                    <include>**/*.xml</include>
                 </includes>
                 <filtering>false</filtering>
             </resource>

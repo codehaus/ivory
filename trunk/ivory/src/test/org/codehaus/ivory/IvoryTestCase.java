@@ -1,4 +1,4 @@
-package org.codehaus.ivory.plexus;
+package org.codehaus.ivory;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -32,7 +32,8 @@ import com.meterware.servletunit.ServletUnitClient;
  * @author <a href="mailto:dan@envoisolutions.com">Dan Diephouse</a>
  * @since May 4, 2003
  */
-public class IvoryTestCase extends PlexusTestCase
+public class IvoryTestCase 
+    extends PlexusTestCase
 {
     private ServletRunner sr;
     
@@ -61,10 +62,12 @@ public class IvoryTestCase extends PlexusTestCase
         HttpUnitOptions.setExceptionsThrownOnErrorStatus(true);
         
         InputStream is =
-            getClass().getResourceAsStream(
-                "/org/codehaus/ivory/plexus/web.xml");
+            getClass().getResourceAsStream( "/org/codehaus/ivory/plexus/web.xml");
     
         sr = new ServletRunner(is);
+        
+        PlexusTestServlet.Plexus = getContainer();
+        sr.registerServlet("plexus", PlexusTestServlet.class.getName());
     }
     
     protected ServletUnitClient newClient() throws Exception
